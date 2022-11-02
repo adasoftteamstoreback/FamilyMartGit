@@ -1,0 +1,51 @@
+.ospDocumentno{
+    font-size       : 14px !important;
+    font-weight     : bold;
+    color           : #232C3D !important;
+}
+
+.ospDocumentnoValue{
+    font-size       : 14px !important;
+    color           : #232C3D !important;
+}
+
+.ospDocumentdate{
+    font-size       : 14px !important;
+    font-weight     : bold;
+    color           : #232C3D !important;
+}
+
+.ospDocumentdateValue{
+    font-size       : 14px !important;
+    color           : #232C3D !important;
+}
+
+.ospStatusapprove{
+    font-size       : 14px !important;
+    color           : #232C3D !important;
+    float           : right;
+    margin          : 10px 0px;
+}
+
+.oimImageapprove{
+    width           : 15px;
+    margin-right    : 5px;
+}
+
+.ospTextApprove{
+    font-size       : 14px !important;
+}
+
+
+
+#otbTableSuggestorder th{
+    font-size       : 14px !important;
+}
+
+#otbTableSuggestorder tr{
+    font-size       : 14px !important;
+}
+
+#otbTableSuggestorder thead  th:last-child{
+    border-right    : 1px solid #dddddd !important;
+}

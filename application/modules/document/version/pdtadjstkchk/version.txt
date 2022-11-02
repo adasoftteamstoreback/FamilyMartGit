@@ -1,0 +1,113 @@
+﻿Version 4.2.60
+
+4.2.60 Napat(Jame)
+- [2022/11/01] แก้ไขจำนวน parameters ที่ส่งให้ stored STP_PRCxUpdatePdtChkDT
+
+4.2.59 Napat(Jame)
+- [2022/10/27] RQ-12 
+    1.อนุมัติข้ามวัน Auto Export
+    2.ดีดสินค้าลงตาราง DTCut และระบุรหัสเหตุผล
+    3.ตรวจนับเป็นของ CFM หรือ TOP ถ้าเป็นของ TOP จะไม่ทำ process 6.1.1
+    4.เพิ่มการ call stored STP_PRCxUpdatePdtChkDT
+
+4.2.58 Worakorn(Doz)
+- [2022/02/17]  เช็คเงื่อนไขกรณี ข้อมูลใน Table TCNMPdtLoc ไม่มีข้อมูล ให้แสดงข้อความ  ไม่พบข้อมูล คลัง/ที่เก็บ (Location)
+
+4.2.57 Napat(Jame)
+- [2021/10/15] CFM/2021 - 290 แก้ไขการคำนวณ FCIudQtyBal,FCIudQtyDiff
+
+4.2.56 Napat(Jame)
+- [2021/03/19] CFM/2021 - 060 ย้ายการ set cookie กลับไปที่เดิม
+
+4.2.55 Napat(Jame)
+- [2021/01/28] CFM/2020 - 583  รัน AutoRunBgPHP.exe เมื่อกดอนุมัติเอกสาร เพื่อให้เปิด Background Process PHP
+
+4.2.42.8 Napat(Jame) # เวอชั่นพิเศษ
+- [2021/01/15] CFM/2021 - 004  ย้ายมา set cookie ตอนโหลดหน้าจอเสร็จแล้ว และเพิ่มเวลา expire 1 วัน
+
+4.2.54 Napat(Jame)
+- [2021/01/15] CFM/2021 - 004  ย้ายมา set cookie ตอนโหลดหน้าจอเสร็จแล้ว และเพิ่มเวลา expire 1 วัน
+
+4.2.42.7 Napat(Jame) # เวอชั่นพิเศษ
+- [2020/12/07] CFM/2020 - 574  เลือกรายการค้นหา HQ แล้วให้ปิดปุ่มค้นหาไปเลย
+
+4.2.53 Napat(Jame)
+- [2020/12/07] CFM/2020 - 574  เลือกรายการค้นหา HQ แล้วให้ปิดปุ่มค้นหาไปเลย
+
+4.2.42.6 Napat(Jame) # เวอชั่นพิเศษ
+- [2020/11/30] CFM/2020 - 557  Re-open ถ้าเพิ่มสินค้าใหม่หลังจากกดบันทึกแล้ว จะต้องกดบันทึกใหม่ เพื่อไปอัพเดทข้อมูลให้ครบถ้วน
+
+4.2.52 Napat(Jame)
+- [2020/11/30] CFM/2020 - 557  Re-open ถ้าเพิ่มสินค้าใหม่หลังจากกดบันทึกแล้ว จะต้องกดบันทึกใหม่ เพื่อไปอัพเดทข้อมูลให้ครบถ้วน
+
+4.2.51 Napat(Jame)
+- [2020/11/25] CFM/2020 - 557 เพิ่มสินค้าเข้าไปใหม่ ให้นำวันที่เอกสาร ไป insert ด้วย
+
+4.2.42.4 Napat(Jame) # เวอชั่นพิเศษ
+- [2020/10/27] CFM/2020 - 484 เพิ่มการอัพเดท จำนวน(WahQty) จาก TCNMPdt.FCPdtQtyRet จนถึงก่อนกดปุ่มอนุมัติ เพื่อให้ยอดตั้งต้นเป็นปัจจุบัน
+
+4.2.50 Napat(Jame)
+- [2020/10/27] CFM/2020 - 484 เพิ่มการอัพเดท จำนวน(WahQty) จาก TCNMPdt.FCPdtQtyRet จนถึงก่อนกดปุ่มอนุมัติ เพื่อให้ยอดตั้งต้นเป็นปัจจุบัน
+
+4.2.49 Napat(Jame)
+- [2020/10/27] CFM/2020 - 516 เปลี่ยนจากการหาวันที่-เวลาด้วย MAX() เป็น ORDER BY
+
+4.2.48 Napat(Jame)
+- [2020/09/29] อัพเดท FCIudQtyC1 ถ้าหากสินค้ามาจาก แฮนเฮว (ก่อนไปหน้าใบรวม)
+
+4.2.42.2 Napat(Jame) # เวอชั่นพิเศษ
+- [2020/09/29] อัพเดท FCIudQtyC1 ถ้าหากสินค้ามาจาก แฮนเฮว (ก่อนไปหน้าใบรวม)
+
+4.2.47 Napat(Jame)
+- [2020/09/23] เปิดปุ่มอ้างอิงเอกสาร D/O และ Auto Receive #จากเวอชั่น 4.2.42.1
+
+4.2.42.1 Napat(Jame) # เวอชั่นพิเศษ
+- [2020/09/21] Fixed ComSheet-2020-461 เพิ่มเงื่อนไขถ้า TCNTStkCountItemList มีสินค้ารายการเดียว (ไม่อนุญาตตรวจนับ) ให้แสดง "พบรายการไม่อนุญาตตรวจนับ"
+- [2020/09/22] Fixed Comsheet 2020-455 อัพเดท FTIudChkUser = 'FamilyMartGit' ในตาราง TCNTPdtChkDTCut เพื่อแยกกับ "FTH Import"
+- [2020/09/23] ปิดปุ่มอ้างอิงเอกสาร D/O และ Auto Receive
+
+4.2.46 Napat(Jame)
+- [2020/09/21] Fixed ComSheet-2020-461 เพิ่มเงื่อนไขถ้า TCNTStkCountItemList มีสินค้ารายการเดียว (ไม่อนุญาตตรวจนับ) ให้แสดง "พบรายการไม่อนุญาตตรวจนับ"
+- [2020/09/22] Fixed Comsheet 2020-455 อัพเดท FTIudChkUser = 'FamilyMartGit' ในตาราง TCNTPdtChkDTCut เพื่อแยกกับ "FTH Import"
+
+4.2.45 Napat(Jame)
+- [2020/09/10] Fixed ComSheet-2020-423 เปลี่ยน text "error" to "แจ้งเตือน" ( modal ยังไม่ระบุวันที่ และเวลาตรวจนับ )
+
+4.2.44 Napat(Jame)
+- [2020/09/03] Fixed ComSheet-2020-415 เคลียร์จำนวนตรวจนับก่อนอ้างอิง
+
+4.2.43 Napat(Jame)
+- [2020/08/10] เพิ่มการอ้างอิงเอกสาร D/O และ Auto Receive (EnhancePOS1010-Req02-Process ตรวจนับสินค้า)
+
+4.2.42 Napat(Jame)
+- [2020/07/13] เพิ่มการตรวจจับหลายหน้าจอด้วย cookie
+- [2020/07/21] Fixed Comsheet 2020-302 เพิ่มการเช็คเงื่อนไขถ้าหากพบตารางให้ DROP TABLE เนื่องจากปกติเช็คเงื่อนไข DROP View อย่างเดียว
+
+4.2.41 Napat(Jame)
+- [2020/06/29] Fixed Comsheet 2020-279 เพิ่มการเขียน log file ใน process อนุมัติใบย่อยไปใบรวม
+
+4.2.40 Supawat(Wat)
+- [2020/06/16] Fixed Comsheet 2020-258 เพิ่มการ join PDT Code เข้าไป ไม่ให้สินค้ามันเบิ้ล
+
+4.2.39 Supawat(Wat)
+- [2020/06/16] Fixed Comsheet 2020-241 ทำใบย่อยไปใบรวม การแก้ปัญหา insert นาน (โหลดค้าง) แก้ไข view vChkDT (remove inner join)
+
+4.2.38 Napat(Jame)
+- [2020/06/12] Fixed Comsheet 2020-258 ReOpen สร้าง view ก่อน INSERT INTO Tmp_ChkDT เพื่อให้ได้สินค้า และ barcode 1 record ต่อ 1 สินค้า, ราคา
+
+4.2.37 Napat(Jame)
+- [2020/06/10] Fixed Comsheet 2020-258 แก้ไข Query ตอนทำใบรวม ตาม analyze จากพี่บั้ม
+
+4.2.36 Napat(Jame)
+[2020/05/22]
+- เขียน Log file ของ BackgroundProcess (BackgroundProcess\application\logs)
+- ปรับเรื่อง Query TimeOut ใน DriverSQLSRV
+
+4.2.35 Napat(Jame)
+- [2020/05/14] ลบ INNER JOIN PdtWah ออกและเปลี่ยน INNER JOIN เป็น LEFT JOIN แก้ปัญหาข้อมูลไม่ออก
+
+4.2.34 Napat(Jame)
+- [2020/05/12] แก้ Query รายงาน ตรวจนับตามสถานที่ เนื่องจาก JOIN Whahouse และ Where เงื่อนไขไม่ครบ มันเลยดึงรายการซ้ำ
+
+4.2.33 Napat(Jame)
+- [2020/04/29] Comsheet 2020-217 เปลี่ยนจากการดึงข้อมูลมาจาก View เป็นดึงข้อมูลมาจาก Master เพื่อตัดปัญหาข้อมูลผิด และข้อมูล duplicate

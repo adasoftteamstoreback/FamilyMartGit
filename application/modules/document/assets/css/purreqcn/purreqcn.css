@@ -1,0 +1,21 @@
+.ospDocumentno{
+    font-size       : 14px !important;
+    font-weight     : bold;
+    color           : #232C3D !important;
+}
+
+.ospDocumentnoValue{
+    font-size       : 14px !important;
+    color           : #232C3D !important;
+}
+
+.ospDocumentdate{
+    font-size       : 14px !important;
+    font-weight     : bold;
+    color           : #232C3D !important;
+}
+
+.ospDocumentdateValue{
+    font-size       : 14px !important;
+    color           : #232C3D !important;
+}

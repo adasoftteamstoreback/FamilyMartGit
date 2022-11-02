@@ -1,0 +1,37 @@
+#otbPASTableProduct td{
+    font-size: 12px;
+}
+
+.xWPASSubMenu{
+    margin:0;
+}
+.xWPASSubMenuActive{
+    color: #008cd6;
+}
+.xWPASSubMenuNotActive{
+    color: #a0a0a0;
+}
+.xWSchHQSelected{
+    background-color : #def0d8 !important;
+}
+
+.xWPASSTableearch{
+    border	: 1px solid #dddddd;
+}
+
+.xWPASSTableearch tr td{
+    padding		: 5px 5px;
+    font-size 	: 11px;
+}
+
+.xWPASFilterSearch , .xWPASFilterSearch2{
+    cursor:pointer;
+}
+
+.xWPASTabColor li.active>a, 
+.xWPASTabColor li.active a:focus, 
+.xWPASTabColor li.active a:hover{
+    background-color: #82b965;
+    color           : #0d4000;
+    font-weight     : bold;
+}

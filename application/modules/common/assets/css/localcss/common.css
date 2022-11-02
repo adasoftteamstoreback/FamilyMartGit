@@ -1,0 +1,873 @@
+/*Font Tahoma*/
+@font-face {
+	font-family: TAHOMA_0;
+	src: url(../../fonts/TAHOMA_0.ttf);
+}
+
+@font-face {
+	font-family: Tahoma;
+	src: url(../../fonts/Tahoma.ttf);
+}
+
+@font-face {
+	font-family: TAHOMAB0;
+	src: url(../../fonts/TAHOMAB0.ttf);
+}
+
+@font-face {
+	font-family: TAHOMABD;
+	src: url(../../fonts/TAHOMABD.ttf);
+}
+
+body{
+    padding-right : 0px !important;
+    font-family : TAHOMA_0 !important;
+}
+
+.Content{
+    width       : 100%;
+    margin      : 55px 0px;
+}
+
+.HeaderBar{
+    position    : fixed;
+    height      : 40px;
+    top         : 0px;
+    background  : #FFF;
+    width       : 100%;
+    box-shadow  : 0 2px 4px 0 rgba(0,0,0,0.10);
+    filter      : progid:DXImageTransform.Microsoft.DropShadow(OffX=5, OffY=5, Strength=15, Direction=0 , Color=#63636308);
+    z-index     : 100;
+}
+
+.ImageLogoHeaderBar{
+    /* width       : 150px;
+    padding     : 10px; */
+    height      : 40px;
+}
+.xCNHeadSpanDocument{
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.xCNHeadSpanDocument .xCNHeadSpanDocumentDetails{
+    font-weight: normal;
+}
+
+body{
+    background  : #e8e8e8;
+}
+
+.FooterBar{
+    position    : fixed;
+    height      : 15px;
+    bottom      : 0px;
+    background  : #e8e8e8;
+    width       : 100%;
+    padding-top : 3px;
+    z-index     : 100;
+}
+
+.ospTextFooter{
+    font-size   : 10px;
+    text-align  : right;
+    display     : block;
+    margin-right: 15px;
+}
+
+
+.ospTextHeadMenu{
+    font-size   : 20px;
+    color       : #179bfd !important;
+    font-family : TAHOMA_0;
+    cursor      : context-menu;
+}
+
+.odvPanelcontent{
+    border              : 1px solid transparent;
+    border-radius       : 2px;
+    -webkit-box-shadow  : 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow          : 0 2px 6px rgba(0, 0, 0, 0.05);
+    background-color    : #fff;
+    margin-bottom       : 30px;
+    padding             : 20px 10px;
+    margin              : 0px;
+    /* display             : inline-block; */
+}
+
+.odvPanelhead{
+    /* margin-top      : 20px; */
+    margin-bottom   : 10px;
+}
+
+.xCNLabelFrm{
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+    font-weight     : bold;
+    color           : #232C3D !important;
+}
+
+input[type="text"]{
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+}
+
+.xCNBtnSearch{
+    box-shadow          : none !important;
+    padding             : 4px 10px 4px 10px !important;
+    background-color    : #eee !important;
+    border              : 1px solid #ccc !important;
+    color               : #706e6e !important;
+}
+
+.btn.xCNBtnSearch>img {
+    margin-top  : 4px !important;
+    cursor      : pointer;
+    float       : right;
+    width       : 20px;
+    height      : 20px;
+}
+
+.ospusernameHeader{
+    font-family     : TAHOMA_0;
+    font-size       : 13px !important;
+    text-align      : right;
+    margin          : 10px;
+    margin-right    : 0px;
+}
+
+.odvHeadRight{
+    float           : right;
+}
+
+.xCNBTNActionInsert{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #023e48 !important;
+    background-color: #5bc0de !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNBTNActionSave{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #084807 !important;
+    background-color: #5cb85c !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+    pointer-events  : all;
+}
+
+.xCNBTNActionSaveDisable{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #909090 !important;
+    background-color: #D4D4D4 !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+    pointer-events  : none;
+}
+
+.xCNBTNActionSearch{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #714900 !important;
+    background-color: #f3af4e !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNBTNActionSearchHQ{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #04243a !important;
+    background-color: #2a7fad !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : auto;
+}
+
+.xCNBTNActionNext{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #0f6b45 !important;
+    background-color: #33da7a !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : auto;
+}
+
+.xCNBTNActionPrevious{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #715a06 !important;
+    background-color: #f1d845 !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : auto;
+}
+
+.xCNBTNActionCancel{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #300 !important;
+    background-color: #d9534f !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNBTNActionApprove{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #002758 !important;
+    background-color: #179BFD !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNBTNActionApproveDisable{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #000 !important;
+    background-color: #D4D4D4 !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+    pointer-events  : none;
+}
+
+.xCNBTNActionReport{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #001844 !important;
+    background-color: #418ac1 !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNBTNActionClose{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #505050 !important;
+    background-color: #D4D4D4 !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNBTNActionConfirm{
+    font-family     : TAHOMA_0;
+    font-weight     : bold;
+    font-size       : 14px !important;
+    padding         : 7px 25px !important;
+    color           : #084569 !important;
+    background-color: #179BFD !important;
+    border-color    : #D4D4D4;
+    border-radius   : 50px;
+    margin-left     : 5px;
+    width           : 100px;
+}
+
+.xCNTableTrActive td{
+    background-color:#e5f5d8 !important;
+}
+
+.odvLoaderprogress{
+    width               : 100%;
+    height              : 100%;
+    z-index             : 999 !important;
+    position            : fixed;
+    top                 : 0;
+    background-color    : rgba(0, 0, 0, 0.5);
+    display             : none;
+}
+
+.lds-dual-ring {
+    display     : inline-block;
+    width       : 64px;
+    height      : 64px;
+    margin      : 18% auto auto auto;
+    display     : block;
+  }
+  .lds-dual-ring:after {
+    content         : " ";
+    display         : block;
+    width           : 46px;
+    height          : 46px;
+    margin          : 1px;
+    border-radius   : 50%;
+    border          : 5px solid #fff;
+    border-color    : #fff transparent #fff transparent;
+    animation       : lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+#ospLoaderText{
+    text-align          : center;
+    display             : block;
+    font-size           : 50px;
+    letter-spacing      : 3px;
+    color               : #FFF;
+}
+
+#ospLoaderTextSub{
+    text-align          : center;
+    display             : block;
+    font-size           : 15px;
+    color               : #FFF;
+}
+
+.xCNModalHead{
+    background                  : #3b8dbd;
+    border-top-right-radius     : 5px;
+    border-top-left-radius      : 5px;
+}
+
+.xCNTextModalHeard{
+    font-family                 : TAHOMA_0;
+    font-size                   : 16px !important;
+    color                       : #000;
+    font-weight                 : 100;
+    margin-top                  : 5px;
+}
+
+.xCNModalContent{
+    padding         : 20px 15px;
+}
+
+#otbBrowserList{
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+    border          : 1px solid #dddddd;
+    margin-bottom   : 15px;
+}
+
+#otbBrowserList td{
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+    border          : 1px solid #dee2e6 !important;
+    cursor          : pointer;
+    line-height     : 1;
+}
+
+.xCNModalFooter{
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+    margin-top      : 15px;
+}
+
+/* Button Number Pagination*/
+.btn-toolbar > .xCNBTNNumPagenation{
+    font-size: 14px!important;
+    font-weight: bold;
+    color: #cbc9c9;
+    background : transparent !important;
+    padding: 0px 5px !important;
+    margin: 5px 5px 0px 5px !important;
+    box-shadow : none !important;
+    font-family     : TAHOMA_0;
+}
+
+.btn-toolbar > .xCNBTNNumPagenation:hover,
+.btn-toolbar > .xCNBTNNumPagenation:focus{
+    color: #7f8790;
+}
+
+
+.btn-toolbar > .xCNBTNNumPagenation.active ,
+.btn-toolbar > .xCNBTNNumPagenation[disabled] {
+    color: #1D2530 !important;
+    opacity: 1 !important;
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+}
+
+.xCNBTNNextprevious{
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+    padding: 6px 15px;
+    background: transparent;
+}
+
+.xCNBTNNextpreviousBlock{
+    cursor: no-drop;
+    opacity: 0.2;
+    background: transparent;
+    box-shadow: none;
+}
+
+.xCNActiveRecord{
+    background-color    : #def0d8 !important;
+    color               : #000000 !important;
+}
+
+.xCNIconTable {
+    cursor  : pointer;
+    width   : 14px;
+    margin  : 4px 5px;
+}
+
+/* table th{
+    border : 1px solid #dddddd;
+    text-align: center;
+}
+
+table tbody td{
+    border : 1px solid #dddddd;
+} */
+
+.ospTextpagination{
+    color           : #1D2530 !important;
+    font-size       : 14px !important;
+}
+
+#ospConfirmDelete , #ospConfirmDeleteValue{
+    color           : #1D2530 !important;
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+}
+
+.xCNHide {
+    display: none !important;
+}
+
+.datepicker{
+    z-index: 900 !important;
+    /* font-family     : TAHOMA_0; */
+}
+
+.table-condensed{
+    font-size       : 14px !important;
+    text-align      : center;
+}
+
+.xCNEditinlineHiddenFrom{
+    border          : transparent;
+    border-radius   : 0px;
+    background      : transparent !important;
+    border-color    : transparent;
+    box-shadow      : inset 0 0px 0px rgba(0,0,0,.075);
+    pointer-events  : none;
+}
+
+#ospConfirmApprove{
+    color           : #1D2530 !important;
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+}
+
+#ospConfirmResultApprove{
+    color           : #1D2530 !important;
+    font-family     : TAHOMA_0;
+    font-size       : 14px !important;
+    margin          : 5px 0px;
+}
+
+.xCNTableHead thead tr{
+    background-color: #82b965;
+    color           : #0d4000;
+    font-size       : 14px;
+}
+
+.xCNBlockWhenApprove {
+    pointer-events  : none;
+    opacity         : 0.5;
+    cursor          : no-drop;
+}
+
+
+.xCNTableData>tbody>tr>td{
+    padding : 0px !important;
+}
+
+.xCNImageInsert{
+    cursor  : pointer !important;
+    width   : 20px;
+    margin  : 3px auto;
+    display : block;
+}
+
+/*Table scroll*/
+.table-scroll {
+    position        : relative;
+    width           : 100%;
+    z-index         : 1;
+    margin          : auto;
+    overflow-y      : scroll;
+}
+
+.table-scroll table {
+    width           : 100%;
+    margin          : auto;
+    border-collapse : separate;
+    border-spacing  : 0;
+}
+
+.table-wrap {
+    position        : relative;
+}
+
+.table-scroll th,
+.table-scroll td {
+    padding         : 5px 10px;
+    background      : #fff;
+    vertical-align  : top;
+    border-right    : 1px solid #ddd;
+}
+
+.table-scroll thead th {
+    position        : -webkit-sticky;
+    position        : sticky;
+    top             : 0;
+    background-color: #82b965;
+    border-right    : 1px solid #ddd;
+    z-index         : 90;
+    text-align      : center;
+}
+
+.table-scroll tfoot,
+.table-scroll tfoot th,
+.table-scroll tfoot td {
+    position        : -webkit-sticky;
+    position        : sticky;
+    bottom          : 0;
+    border-right    : 1px solid #ddd;
+    color           : #000;
+    font-weight     : bold;
+    z-index         : 4;
+    border-bottom   : 1px solid #DDD;
+}
+
+.table-scroll thead td:first-child,
+.table-scroll tbody td:first-child,
+.table-scroll tfoot td:first-child {
+    border-left    : 1px solid #ddd;
+}
+/*End table scroll*/
+
+/* .table-scroll::-webkit-scrollbar { 
+    height  : 2px;
+    border  : 1px solid #cccccc;
+    width   : 10px;
+} */
+
+/* .table-scroll::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(77, 81, 86, 0.27); 
+    background-color : #e4e4e4
+} */
+
+.xCNTableSearch{
+    border-bottom : 1px solid #ddd;
+}
+
+.xCNTableSearch th,
+.xCNTableSearch td{
+    border-right : 1px solid #ddd;
+}
+
+.xCNTableSearch thead td:first-child,
+.xCNTableSearch tbody td:first-child,
+.xCNTableSearch tfoot td:first-child {
+    border-left    : 1px solid #ddd;
+}
+
+/*input Product or Barcode*/
+.xCNInsertInputPDTorBarcode::-webkit-input-placeholder {
+    font-size    : 10px;
+}
+
+.xCNTableCanSortBy{
+    text-align: center;
+    cursor: pointer;
+}
+
+.xCNTableCannotSortBy{
+    text-align: center;
+    cursor: context-menu;
+}
+
+/*panel*/
+.xCNPanelHeadColor{
+    background: #82b965 !important;
+}
+
+.xCNTextDetail1 , .xCNMenuplus{
+    color : #0d4000;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.xCNMenuplus:link, .xCNTextDetail1:link{
+    color : #FFF;
+    text-decoration: none;
+}
+
+.xCNIconFind {
+    content: url(../../images/icons/find-24.png);
+    width: 18px;
+    height: 18px;
+}
+
+.btn.xCNBtnBrowseAddOn {
+    border              : 1px solid #cccccc !important;
+    background-color    : #e9e6e6 !important;
+    /* padding             : 7px 10px; */
+}
+
+.xCNDiscount{
+    box-shadow          : none !important;
+    padding             : 0px 5px 0px 5px !important;
+    background-color    : #eeeeee !important;
+    border              : 1px solid #ccc !important;
+    color               : #706e6e !important;
+    border-radius       : 0px;
+}
+
+.xCNTh2Line{
+    line-height: 1 !important;
+    vertical-align: middle !important;
+}
+
+.wrapper {
+	padding-left: 4em;
+	padding-right: 4em;
+	margin: 15% auto;
+	display: block;
+}
+
+#floatingCirclesG{
+	position:relative;
+	width:125px;
+    height:125px;
+    margin-top: 10% !important;
+	margin:auto;
+	transform:scale(0.6);
+		-o-transform:scale(0.6);
+		-ms-transform:scale(0.6);
+		-webkit-transform:scale(0.6);
+		-moz-transform:scale(0.6);
+}
+
+.f_circleG{
+	position:absolute;
+	background-color:rgb(194,194,194);
+	height:22px;
+	width:22px;
+	border-radius:12px;
+		-o-border-radius:12px;
+		-ms-border-radius:12px;
+		-webkit-border-radius:12px;
+		-moz-border-radius:12px;
+	animation-name:f_fadeG;
+		-o-animation-name:f_fadeG;
+		-ms-animation-name:f_fadeG;
+		-webkit-animation-name:f_fadeG;
+		-moz-animation-name:f_fadeG;
+	animation-duration:1.2s;
+		-o-animation-duration:1.2s;
+		-ms-animation-duration:1.2s;
+		-webkit-animation-duration:1.2s;
+		-moz-animation-duration:1.2s;
+	animation-iteration-count:infinite;
+		-o-animation-iteration-count:infinite;
+		-ms-animation-iteration-count:infinite;
+		-webkit-animation-iteration-count:infinite;
+		-moz-animation-iteration-count:infinite;
+	animation-direction:normal;
+		-o-animation-direction:normal;
+		-ms-animation-direction:normal;
+		-webkit-animation-direction:normal;
+		-moz-animation-direction:normal;
+}
+
+#frotateG_01{
+	left:0;
+	top:51px;
+	animation-delay:0.45s;
+		-o-animation-delay:0.45s;
+		-ms-animation-delay:0.45s;
+		-webkit-animation-delay:0.45s;
+		-moz-animation-delay:0.45s;
+}
+
+#frotateG_02{
+	left:15px;
+	top:15px;
+	animation-delay:0.6s;
+		-o-animation-delay:0.6s;
+		-ms-animation-delay:0.6s;
+		-webkit-animation-delay:0.6s;
+		-moz-animation-delay:0.6s;
+}
+
+#frotateG_03{
+	left:51px;
+	top:0;
+	animation-delay:0.75s;
+		-o-animation-delay:0.75s;
+		-ms-animation-delay:0.75s;
+		-webkit-animation-delay:0.75s;
+		-moz-animation-delay:0.75s;
+}
+
+#frotateG_04{
+	right:15px;
+	top:15px;
+	animation-delay:0.9s;
+		-o-animation-delay:0.9s;
+		-ms-animation-delay:0.9s;
+		-webkit-animation-delay:0.9s;
+		-moz-animation-delay:0.9s;
+}
+
+#frotateG_05{
+	right:0;
+	top:51px;
+	animation-delay:1.05s;
+		-o-animation-delay:1.05s;
+		-ms-animation-delay:1.05s;
+		-webkit-animation-delay:1.05s;
+		-moz-animation-delay:1.05s;
+}
+
+#frotateG_06{
+	right:15px;
+	bottom:15px;
+	animation-delay:1.2s;
+		-o-animation-delay:1.2s;
+		-ms-animation-delay:1.2s;
+		-webkit-animation-delay:1.2s;
+		-moz-animation-delay:1.2s;
+}
+
+#frotateG_07{
+	left:51px;
+	bottom:0;
+	animation-delay:1.35s;
+		-o-animation-delay:1.35s;
+		-ms-animation-delay:1.35s;
+		-webkit-animation-delay:1.35s;
+		-moz-animation-delay:1.35s;
+}
+
+#frotateG_08{
+	left:15px;
+	bottom:15px;
+	animation-delay:1.5s;
+		-o-animation-delay:1.5s;
+		-ms-animation-delay:1.5s;
+		-webkit-animation-delay:1.5s;
+		-moz-animation-delay:1.5s;
+}
+
+.table tr td.xCNColorEditLine{
+    background-color: #ffc6c6 !important;
+}
+
+@keyframes f_fadeG{
+	0%{
+		background-color:#3b8dbd ;
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-o-keyframes f_fadeG{
+	0%{
+		background-color:#3b8dbd ;
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-ms-keyframes f_fadeG{
+	0%{
+		background-color:#3b8dbd ;
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-webkit-keyframes f_fadeG{
+	0%{
+		background-color:#3b8dbd ;
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-moz-keyframes f_fadeG{
+	0%{
+		background-color:#3b8dbd ;
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}
+  

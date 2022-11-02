@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <FamilyMart Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>FamilyMart</Alias>
+        <ConnectionStringEncrypted>9FTZSGII0wVgW6V0e0ltP9Eg3WhFWdO86RXoXE0JrU6NWnuJ10pC7XFNXYBjFCW71BajKE5U88j9R4RQYAllP+xU4SvGVkPt+WbZQHpJqXuJyPcp5WjTTXJrTWxjBKR/43CzK8Z9owVGXG2lYmwobtU=</ConnectionStringEncrypted>
+        <Key>17d1b11d4c85473caf822987211d3300</Key>
+        <Name>FamilyMart</Name>
+      </FamilyMart>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <Q_432_ALLPdtStkCheckingByLocation Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>Q_432_ALLPdtStkCheckingByLocation</Alias>
+        <Columns isList="true" count="17">
+          <value>ORIGINAL,FTWahName,FTWahName,FTWahName,System.String,ba722abe3d3e4da18bcc99b7562459bf</value>
+          <value>ORIGINAL,FTPdtCode,FTPdtCode,FTPdtCode,System.String,_x0039_c511541ea8c4642adb494d0cc967ff8</value>
+          <value>ORIGINAL,FTPdtStaActive,FTPdtStaActive,FTPdtStaActive,System.String,f7cf821bc33a472080b1d04f97869d24</value>
+          <value>ORIGINAL,FTPdtType,FTPdtType,FTPdtType,System.String,cc8fd1af95d74396a0e5955309676552</value>
+          <value>ORIGINAL,FTIuhStaDoc,FTIuhStaDoc,FTIuhStaDoc,System.String,d7038b4b69734df0a181a87487c1f01f</value>
+          <value>ORIGINAL,FCIudQtyC1,FCIudQtyC1,FCIudQtyC1,System.Double,_x0034_65f1956af3b4dcf96403c345208647b</value>
+          <value>ORIGINAL,FTIuhDocNo,FTIuhDocNo,FTIuhDocNo,System.String,_x0038_38f37e1a3e94315b123bb4505d338d2</value>
+          <value>ORIGINAL,FTBchCode,FTBchCode,FTBchCode,System.String,fa5fb748d45e44549308cc9fb07c9481</value>
+          <value>ORIGINAL,FCPdtRetPri1,FCPdtRetPri1,FCPdtRetPri1,System.Double,bb4096af8bcb4401ae0a64765a521b1c</value>
+          <value>ORIGINAL,FTPlcCode,FTPlcCode,FTPlcCode,System.String,e96a5e2cd10e48cf92b9d070ddb4361e</value>
+          <value>ORIGINAL,FTIudBarCode,FTIudBarCode,FTIudBarCode,System.String,_x0035_164acd21b3a4206be2305c7c87f34d4</value>
+          <value>ORIGINAL,FTPdtName,FTPdtName,FTPdtName,System.String,dc2e879bb10a4437a7deae91e0bc0534</value>
+          <value>ORIGINAL,FDIuhDocDate,FDIuhDocDate,FDIuhDocDate,System.DateTime,d34b24cdf0da43e482c8bc8b1b185c00</value>
+          <value>ORIGINAL,FTIuhDocType,FTIuhDocType,FTIuhDocType,System.String,_x0038_6054be5575942eda61044777da967d6</value>
+          <value>ORIGINAL,FNIudSeqNo,FNIudSeqNo,FNIudSeqNo,System.Int64,_x0038_61366f24acb4521a40316a206ac467f</value>
+          <value>ORIGINAL,FTIudChkTime,FTIudChkTime,FTIudChkTime,System.String,ae436ffbac41407cbc2e75e35dcc7031</value>
+          <value>ORIGINAL,FCSumPdtRetPri1,FCSumPdtRetPri1,FCSumPdtRetPri1,System.Double,_x0036_7c8a91ad0454f55af057795d617091d</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>ee9af1630f694c04951c4c4fe25d146b</Key>
+        <Name>Q_432_ALLPdtStkCheckingByLocation</Name>
+        <NameInSource>FamilyMart</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT  WAH.FTWahName, DT.FTPdtCode, PDT.FTPdtStaActive
+	, PDT.FTPdtType, HD.FTIuhStaDoc, HD.FTBchCode
+	, DT.FCIudQtyC1, HD.FTIuhDocNo, BAR.FCPdtRetPri1 ,(FCIudQtyC1 * FCPdtRetPri1) AS  FCSumPdtRetPri1
+	, DT.FTPlcCode, DT.FTIudBarCode, PDT.FTPdtName
+	, HD.FDIuhDocDate, HD.FTIuhDocType
+	, DT.FNIudSeqNo, DT.FTIudChkTime
+	FROM  TCNTPdtChkHD AS HD
+	INNER JOIN TCNTPdtChkDT AS DT ON 
+		HD.FTBchCode=DT.FTBchCode 
+	AND HD.FTIuhDocNo=DT.FTIuhDocNo
+INNER JOIN TCNMPdt AS PDT ON 
+		DT.FTPdtCode=PDT.FTPdtCode
+INNER JOIN TCNMPdtBar AS BAR ON 
+		DT.FTPdtCode=BAR.FTPdtCode
+	AND DT.FTIudBarCode=BAR.FTPdtBarCode  
+INNER JOIN TCNTPdtInWha AS PDTWa  ON 
+		PDT.FTPdtStkCode=PDTWa.FTPtdStkCode
+INNER JOIN TCNMWaHouse  AS WAH ON 
+		PDTWa.FTWahCode=WAH.FTWahCode 
+ORDER BY  HD.FTIuhDocNo ASC  ,DT.FTIudBarCode ASC</SqlCommand>
+      </Q_432_ALLPdtStkCheckingByLocation>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="2">
+      <value>,SP_tCompCode,SP_tCompCode,company_x0020__x0020_code,System.String,_x0030_02,False,False,False,False,,da4e80bd70264775a377e1cdfeb7d1fe</value>
+      <value>,SP_nLang,SP_nLang,Language_x0020_TH-EN,System.String,_x0032_,False,False,False,False,,_x0030_ba10439db9a40a58340d89e0274ce9d</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>8db319c4019f4686bca84127abf5b6f7</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="7">
+        <PHBTitle Ref="5" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.2,7.72,0.6</ClientRectangle>
+          <Components isList="true" count="10">
+            <Text1 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,7.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,12,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_nLang== "1"?"รายการตรวจนับสินค้า-แจกแจงตามสถานที่ตรวจนับ":"Inventory - Distribute by counting location"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text2 Ref="7" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.5,0.2,0.3,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_nLang== "1"?"วันที่ : ":"Date :"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+            <Text7 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.4,0.2,2.3,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_nLang== "1"?"โค้ดรายงาน : Rpt_432_AllPdtStkChecking":"Report Code : Rpt_432_AllPdtStkChecking"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text7>
+            <Text9 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.4,0.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_nLang== "1"?"เลขร้านค้า":"store"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text9>
+            <Text14 Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.8,0.2,2.6,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FDIuhDocDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="11" type="DateFormat" isKey="true" />
+            </Text14>
+            <Text15 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0.4,2.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FTBchCode}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text15>
+            <Text16 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.4,0.4,0.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_nLang== "1"?"ปริ้น:":"Print on :"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text16>
+            <Text17 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.1,0.4,1.6,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Today}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text17>
+            <SP_tCompCode1 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.6,0.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>SP_tCompCode1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_nLang== "1"?"รหัสบริษัท":"CompCode"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </SP_tCompCode1>
+            <Text10 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0.6,1.8,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{SP_tCompCode}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text10>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PHBTitle</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PHBTitle>
+        <PageHeaderBand1 Ref="17" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,1.2,7.72,0.2</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text8 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>0,0,0.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{SP_nLang== "1"?"เลขที่เอกสาร :":"DocNo :"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+            </Text8>
+            <Text13 Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>0.7,0,2.5,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="4" />
+              <Parent isRef="17" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FTIuhDocNo}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text13>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageHeaderBand1>
+        <PageFooterBand1 Ref="20" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,10.02,7.72,0.2</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text11 Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,-0.02,0.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="20" />
+              <Text>{SP_nLang== "1"?"ปริ้นโดย":"Print by"}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text11>
+            <Text18 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.5,-0.02,1.2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="4" />
+              <Parent isRef="20" />
+              <Text>{PageNofM}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text18>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooterBand1>
+        <GroupHeaderBand1 Ref="23" type="GroupHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <CanBreak>True</CanBreak>
+          <ClientRectangle>0,1.8,7.72,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Condition>{Q_432_ALLPdtStkCheckingByLocation.FTIuhDocNo}</Condition>
+          <Conditions isList="true" count="0" />
+          <Name>GroupHeaderBand1</Name>
+          <NewColumnBefore>True</NewColumnBefore>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupHeaderBand1>
+        <HeaderQ_432_ALLPdtStkCheckingByLocation Ref="24" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2.2,7.72,0.6</ClientRectangle>
+          <Components isList="true" count="8">
+            <HeaderQ_432_ALLPdtStkCheckingByLocation_FTIuhStaDoc Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1.7,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderQ_432_ALLPdtStkCheckingByLocation_FTIuhStaDoc</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{SP_nLang== "1"?"บาร์โค้ด":"Barcode"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderQ_432_ALLPdtStkCheckingByLocation_FTIuhStaDoc>
+            <HeaderQ_432_ALLPdtStkCheckingByLocation_FTPdtName Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.7,0,3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderQ_432_ALLPdtStkCheckingByLocation_FTPdtName</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{SP_nLang== "1"?"ชื่อสิ้นค้า":"Product Name"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderQ_432_ALLPdtStkCheckingByLocation_FTPdtName>
+            <HeaderQ_432_ALLPdtStkCheckingByLocation_FCPdtRetPri1 Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.7,0.3,1,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderQ_432_ALLPdtStkCheckingByLocation_FCPdtRetPri1</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{SP_nLang== "1"?"ราคาขาย":"Price Sale"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderQ_432_ALLPdtStkCheckingByLocation_FCPdtRetPri1>
+            <HeaderQ_432_ALLPdtStkCheckingByLocation_FCIudQtyC1 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.7,0.3,0.7,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderQ_432_ALLPdtStkCheckingByLocation_FCIudQtyC1</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{SP_nLang== "1"?"จำนวนนับ":"Qty"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderQ_432_ALLPdtStkCheckingByLocation_FCIudQtyC1>
+            <Text4 Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,0.3,1.3,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{SP_nLang== "1"?"มูลค่าขาย":"Sale value"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="30" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.7,0,3,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,10,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <Text>{SP_nLang== "1"?"ผลตรวจนับ":"Counting results"}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <HorizontalLinePrimitive1 Ref="31" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,0.5,7.7,0.01</ClientRectangle>
+              <Color>Black</Color>
+              <Conditions isList="true" count="0" />
+              <EndCap Ref="32" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <StartCap Ref="33" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+            <HorizontalLinePrimitive2 Ref="34" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,0,7.7,0.01</ClientRectangle>
+              <Color>Black</Color>
+              <Conditions isList="true" count="0" />
+              <EndCap Ref="35" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="4" />
+              <Parent isRef="24" />
+              <StartCap Ref="36" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderQ_432_ALLPdtStkCheckingByLocation</Name>
+          <NewColumnBefore>True</NewColumnBefore>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </HeaderQ_432_ALLPdtStkCheckingByLocation>
+        <DataQ_432_ALLPdtStkCheckingByLocation Ref="37" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,3.2,7.72,0.3</ClientRectangle>
+          <Components isList="true" count="5">
+            <DataQ_432_ALLPdtStkCheckingByLocation_FTIuhStaDoc Ref="38" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,1.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataQ_432_ALLPdtStkCheckingByLocation_FTIuhStaDoc</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FTIudBarCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </DataQ_432_ALLPdtStkCheckingByLocation_FTIuhStaDoc>
+            <DataQ_432_ALLPdtStkCheckingByLocation_FTPdtName Ref="39" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>1.7,0,3,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataQ_432_ALLPdtStkCheckingByLocation_FTPdtName</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FTPdtName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataQ_432_ALLPdtStkCheckingByLocation_FTPdtName>
+            <DataQ_432_ALLPdtStkCheckingByLocation_FCPdtRetPri1 Ref="40" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.7,0,1,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataQ_432_ALLPdtStkCheckingByLocation_FCPdtRetPri1</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FCPdtRetPri1}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="41" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataQ_432_ALLPdtStkCheckingByLocation_FCPdtRetPri1>
+            <DataQ_432_ALLPdtStkCheckingByLocation_FCIudQtyC1 Ref="42" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.7,0,0.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataQ_432_ALLPdtStkCheckingByLocation_FCIudQtyC1</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FCIudQtyC1}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="43" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataQ_432_ALLPdtStkCheckingByLocation_FCIudQtyC1>
+            <Text3 Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.5,0,1.2,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="37" />
+              <Text>{Q_432_ALLPdtStkCheckingByLocation.FCSumPdtRetPri1}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="45" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>Q_432_ALLPdtStkCheckingByLocation</DataSourceName>
+          <FilterEngine>SQLQuery</FilterEngine>
+          <Filters isList="true" count="0" />
+          <Name>DataQ_432_ALLPdtStkCheckingByLocation</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataQ_432_ALLPdtStkCheckingByLocation>
+        <GroupFooterBand1 Ref="46" type="GroupFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3.9,7.72,0.3</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text6 Ref="47" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.7,0,0.8,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{Sum(Q_432_ALLPdtStkCheckingByLocation.FCIudQtyC1)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="48" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text12 Ref="49" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.5,0,1.2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Tahoma,8,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <Text>{Sum(GroupHeaderBand1,Q_432_ALLPdtStkCheckingByLocation.FCSumPdtRetPri1)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="50" type="NumberFormat" isKey="true">
+                <DecimalDigits>2</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+              </TextFormat>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <HorizontalLinePrimitive3 Ref="51" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>4.7,0,3,0.01</ClientRectangle>
+              <Color>Black</Color>
+              <Conditions isList="true" count="0" />
+              <EndCap Ref="52" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive3</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <StartCap Ref="53" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive3>
+            <HorizontalLinePrimitive4 Ref="54" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>4.7,0.2,3,0.01</ClientRectangle>
+              <Color>Black</Color>
+              <Conditions isList="true" count="0" />
+              <EndCap Ref="55" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive4</Name>
+              <Page isRef="4" />
+              <Parent isRef="46" />
+              <StartCap Ref="56" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>GroupFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </GroupFooterBand1>
+      </Components>
+      <Conditions isList="true" count="1">
+        <value>,EqualTo,_x0031_,,Numeric,Red,Transparent,Arial_x002C_8,True,False,,,None</value>
+      </Conditions>
+      <Guid>bac001d78c524ce5844820026e9e3033</Guid>
+      <Margins>0.39,0.39,0.39,0.39</Margins>
+      <Name>Page1</Name>
+      <PageHeight>11</PageHeight>
+      <PageWidth>8.5</PageWidth>
+      <PaperSize>Letter</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>4/20/2020 4:05:56 PM</ReportChanged>
+  <ReportCreated>3/25/2020 1:06:32 PM</ReportCreated>
+  <ReportFile>E:\Report\Frm_432_ALLPdtStkCheckingByLocation_Raws.mrt</ReportFile>
+  <ReportGuid>1e842556a7314860a613b7bfd5beda82</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Inches</ReportUnit>
+  <ReportVersion>2020.2.2.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="1">
+    <Style1 Ref="57" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Brush>Transparent</Brush>
+      <Conditions isList="true" count="0" />
+      <Font>Tahoma,8</Font>
+      <Name>Style1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Style1>
+  </Styles>
+</StiSerializer>

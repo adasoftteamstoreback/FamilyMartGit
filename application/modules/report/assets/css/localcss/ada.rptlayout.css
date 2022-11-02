@@ -1,0 +1,137 @@
+.xCNContentReport {
+    margin-top: 10px !important;
+}
+.xCNContentReport , .xCNRptTable {
+    font-size: 11px !important;
+}
+.xCNRptAddress , .xCNRptHeaderInfo {
+    font-size: 12px !important;
+}
+.xCNRptCompany {
+    font-size: 13px !important;
+}
+.xCNRptTitle {
+    font-size: 15px !important;
+}
+
+.xCNRptColumnHeader {
+    /* text-align: center !important; */
+    vertical-align: middle !important;
+}
+
+.table>tbody>tr>td.xCNFooterRpt {
+    border-bottom: 1px solid black !important;
+}
+
+.table thead th, .table>thead>tr>th, .table tbody tr, .table>tbody>tr>td {
+    border: 0px transparent !important;
+}
+.table>tbody>tr>td.xCNRPTSubFooterLine{
+    border-top : 1px dashed #999 !important;
+    border-bottom : 1px dashed #999 !important;
+}
+.table>thead:first-child>tr:first-child>th {
+    border-top: 1px solid black !important;
+}
+
+.table>thead:first-child>tr>th {
+    border-bottom : 1px solid black !important;
+}
+
+.table>tbody>tr.xCNTrSubFooter{
+    border-top: 1px solid black !important;
+    border-bottom : 1px solid black !important;
+}
+
+.table tbody tr.xCNHeaderGroup, .table>tbody>tr.xCNHeaderGroup>td {
+    font-size: 18px !important;
+    font-weight: 600;
+}
+.table>tbody>tr.xCNHeaderGroup>td:nth-child(4), .table>tbody>tr.xCNHeaderGroup>td:nth-child(5) {
+    text-align: right;
+}
+.xCNFoot{
+    border-top: 1px solid black !important;
+    border-bottom : 1px solid black !important;
+}
+.xCNRPTUnderline{
+    border-top : 1px dashed #999 !important;
+}
+.cssItem{
+    text-align:left;
+    white-space:nowrap; 
+    font-weight: bold;
+    background-color:#CFE2F3;
+}
+
+.xWRptNavGroup{
+    padding: 8px 15px !important;
+}
+#odvMainContent{
+    margin-top: -20px !important;
+}
+.xWBTNRptPrintPreview {
+    width: auto !important;
+    font-size: 17px;
+}
+
+#odvRvwMainMenu{
+    margin-top:70px;
+}
+
+#odvNavMenuReport {
+    margin-bottom: 0px !important;
+    background-color: white !important;
+}
+
+table.gridtable     { page-break-after: auto; }
+table.gridtable   tr    { page-break-inside:avoid;page-break-after: auto; }
+table.gridtable   td    { page-break-inside:avoid; page-break-after:auto }
+table.gridtable   thead { display:table-header-group }
+table.gridtable   tfoot { display:table-footer-group }
+
+/* #pageHeader{
+    position: fixed; 
+    top:0;
+    margin-bottom: 100px;
+    padding-bottom: 100px;
+    z-index: 9999;
+} */
+
+.text-bold {
+    font-weight: bold;
+}
+
+@media print {
+    #odvMainContent{
+        margin-top: 0px !important;
+    }
+    .xWRptTitleSampleBeforePrint {
+        display: none !important;
+    }
+    #odvNavMenuReport {
+        height: 0 !important;
+    }
+    #odvContentPageRptViewer .xCNLayOutRptHtml{
+        padding-top: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    #odvContentPageRptViewer .panel-body{
+        padding: 0 !important;
+    }
+
+    .xCNContentReport , .xCNRptTable {
+        font-size: 8px !important;
+    }
+    .xCNRptAddress , .xCNRptHeaderInfo {
+        font-size: 9px !important;
+    }
+    .xCNRptCompany {
+        font-size: 10px !important;
+    }
+    .xCNRptTitle {
+        font-size: 12px !important;
+    }
+}
