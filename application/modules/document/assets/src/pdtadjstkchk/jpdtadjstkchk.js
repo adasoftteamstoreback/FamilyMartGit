@@ -1372,7 +1372,7 @@ function JSxPASApprove() {
 
             JSxPASAlertMessage(aModalText = {
                 tHead: 'แจ้งเตือน',
-                tDetail: 'ยังไม่มีการประมวลผลยอดยกมาสิ้นเดือน. คุณค้องประมวลผลยอดยกมาสิ้นเดือนก่อน<br>รอบบัญชีปัจจุบัน : ' + tMonth + ' ' + firstDayWithSlashes + ' - ' + lastDayWithSlashes,
+                tDetail: 'ยังไม่มีการประมวลผลยอดยกมาสิ้นเดือน. คุณต้องประมวลผลยอดยกมาสิ้นเดือนก่อน<br>รอบบัญชีปัจจุบัน : ' + tMonth + ' ' + firstDayWithSlashes + ' - ' + lastDayWithSlashes,
                 nType: 2
             });
         }, 500);

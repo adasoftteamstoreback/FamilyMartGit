@@ -1,4 +1,7 @@
-﻿Version 4.2.60
+﻿Version 4.2.61
+
+4.2.61 Napat(Jame)
+- [2022/11/02] ปรับแก้คำผิด แจ้งเตือน ยังไม่ทำยอดยกมาสิ้นเดือน
 
 4.2.60 Napat(Jame)
 - [2022/11/01] แก้ไขจำนวน parameters ที่ส่งให้ stored STP_PRCxUpdatePdtChkDT
