@@ -1236,11 +1236,13 @@ function JSxPASSearchPdtChkHD(poElem) {
 //ตรวจสอบยกยอดมาสิ้นเดือน
 function JSbPASCheckMonthEnd() {
     var bReturn = true;
-
+    var tDocNo  = $('#oetPASDocNo').val();
     $.ajax({
         type: "POST",
         url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSaCPASCheckMonthEnd",
-        data: {},
+        data: {
+            FTIuhDocNo : tDocNo,
+        },
         cache: false,
         timeout: 0,
         async: false,

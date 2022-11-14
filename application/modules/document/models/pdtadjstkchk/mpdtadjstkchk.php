@@ -2469,6 +2469,7 @@ class mpdtadjstkchk extends Database {
         //  return $aDataResult;
     }
 
+    // Last Update : Napat(Jame) 14/11/2022 Comsheet/2022-055 เปลี่ยนการ between date/time ด้วย getdate() เนื่องจากถ้าทำใบรวมข้ามวันจะไม่เห็นข้อมูล
     public function FSaMPASUpdFromStockCard($paData){
         //Type
         //1 or 4 = + (รับ-คืน)
@@ -2503,11 +2504,12 @@ class mpdtadjstkchk extends Database {
 
                             SUM(CASE WHEN STKL.FTStkType = '4' AND SUBSTRING(FTStkDocNo,1,1)='R' THEN STKL.FCStkQty ELSE 0 END) AS FCQtyReturn
                         FROM TCNTPdtStkCard STKL WITH(NOLOCK)
-                        LEFT JOIN TCNTPdtChkDT DTL WITH(NOLOCK) ON DTL.FTIudStkCode = STKL.FTPdtStkCode AND DTL.FTBchCode = STKL.FTBchCode
-                        WHERE 1=1
-                        AND DTL.FTIuhDocNo = '$paData[FTIuhDocNo]'
-                        AND STKL.FDStkDate BETWEEN CONVERT(VARCHAR(10),DTL.FDIudChkDate,121) AND CONVERT(VARCHAR(10),GETDATE(),121)
-                        AND STKL.FTTimeIns BETWEEN CONVERT(VARCHAR(8),DTL.FTIudChkTime,8) AND CONVERT(VARCHAR(8),GETDATE(),8)
+                        INNER JOIN TCNTPdtChkDT DTL WITH(NOLOCK) ON DTL.FTIudStkCode = STKL.FTPdtStkCode AND DTL.FTBchCode = STKL.FTBchCode
+                        WHERE DTL.FTIuhDocNo = '$paData[FTIuhDocNo]'
+                        -- AND STKL.FDStkDate BETWEEN CONVERT(VARCHAR(10),DTL.FDIudChkDate,121) AND CONVERT(VARCHAR(10),GETDATE(),121)
+                        -- AND STKL.FTTimeIns BETWEEN CONVERT(VARCHAR(8),DTL.FTIudChkTime,8) AND CONVERT(VARCHAR(8),GETDATE(),8)
+                        AND STKL.FDDateIns BETWEEN CONVERT(VARCHAR(10),DTL.FDIudChkDate,121) AND CONVERT(VARCHAR(10),STKL.FDDateIns,121)
+	                    AND STKL.FTTimeIns BETWEEN CONVERT(VARCHAR(8),DTL.FTIudChkTime,8) AND CONVERT(VARCHAR(8),STKL.FTTimeIns,8)
                         --AND LEFT(FTStkDocNo,2) NOT IN ('TE','TD')
                         AND (LEFT(FTStkDocNo,2) != 'TE' AND LEFT(FTStkDocNo,2) != 'TD')
                         GROUP BY DTL.FTIuhDocNo,STKL.FTBchCode,STKL.FTPdtStkCode

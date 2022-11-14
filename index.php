@@ -58,6 +58,11 @@
     }else{
         include('Content.php');
     }
+
+    // Create By : Napat(Jame) 14/11/2022 ถ้ายังไม่มีโฟลเดอร์ logs ให้สร้างไว้
+    if( !file_exists('application/logs') ){
+        mkdir('application/logs', 0777, true);
+    }
 ?>
 </body>
 </html>

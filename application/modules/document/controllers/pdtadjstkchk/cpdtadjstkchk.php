@@ -665,6 +665,13 @@ class comnPdtAdjStkChkNew extends Controller {
     //ตรวจสอบยกยอดมาสิ้นเดือน
     public function FSaCPASCheckMonthEnd(){
         try{
+            // Napat(Jame) 14/11/2022 Comsheet/2022-055
+            $aConditionData = array(
+                'FTIuhDocNo'        => $this->input->post('FTIuhDocNo')
+            );
+            $this->mpdtadjstkchk->FSaMPASUpdFromStockCard($aConditionData); // อัพเดท คงเหลือ, ปรับ(+,-), เคลื่อนไหวหลังตรวจนับ 
+            $this->mpdtadjstkchk->FSxMPASUpdWahQty($aConditionData); // อัพเดท จำนวนปัจจุบัน จาก TCNMPdt.FCPdtQtyRet
+
             $aDataChkME = $this->mpdtadjstkchk->FSaMPASCheckMonthEnd();
             echo json_encode($aDataChkME);
         }catch(Exception $e) {
