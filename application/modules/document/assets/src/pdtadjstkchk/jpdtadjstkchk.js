@@ -379,7 +379,11 @@ function JSxPASCheckDateTime(paTextChkDateTime, paTextConfirmCode) {
                     }
                 });
             } else {
-                JSxPASConfirmCode(paTextConfirmCode);
+                if (tDocNo == " ") {
+                    JSxPASConfirmCode(paTextConfirmCode);
+                } else {
+                    JSvPASCallPageMain(tDocNo, 1);
+                }
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {

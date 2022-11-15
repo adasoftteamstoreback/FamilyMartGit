@@ -357,28 +357,32 @@ class comnPdtAdjStkChkNew extends Controller {
                 'aDataQuery'    => $aAddEditHD
             );
 
-        }
-        /*else{
+        }else{
             $aDataQuery = array(
                 'FTBchCode'             => $this->tBchCode,
                 'FTIuhDocNo'            => $tDocNoChk,
+                'FDDateUpd'             => date('Y-m-d'),
+                'FTTimeUpd'             => date('H:i:s'),
+                'FTWhoUpd'              => $_SESSION["SesUsername"],
+                'FDDateIns'             => date('Y-m-d'),
+                'FTTimeIns'             => date('H:i:s'),
+                'FTWhoIns'              => $_SESSION["SesUsername"]
             );
-            $this->mpdtadjstkchk->FSxMPASUpdateConfirmCode($aDataQuery);
+            // $this->mpdtadjstkchk->FSxMPASUpdateConfirmCode($aDataQuery);
             $aReturnAddEditHD = array(
                 'FTIuhDocNo'    => $aDataQuery['FTIuhDocNo'],
                 'aDataQuery'    => array(
                     'nStaQuery' => 1
                 )
             );
-        }*/
+        }
 
         if($tTypePage == '3'){
-            $this->mpdtadjstkchk->FSaMPASUpdDocRefOfSubDoc($aDataQuery); // อัพเดท DocRef เอกสารย่อย
-            $this->mpdtadjstkchk->FSxMPASDocStkNotExist($aDataQuery); // Update ลงข้อมูล TCNTPdtStkNotExist 
+            $this->mpdtadjstkchk->FSaMPASUpdDocRefOfSubDoc($aDataQuery);    // อัพเดท DocRef เอกสารย่อย
+            $this->mpdtadjstkchk->FSxMPASDocStkNotExist($aDataQuery);       // Update ลงข้อมูล TCNTPdtStkNotExist 
         }
-        
-        $this->mpdtadjstkchk->FSaMPASUpdDocNoToDTCut($aDataQuery); // อัพเดท DocNo ตาราง DTCut ตอนบันทึกใบย่อย
-        
+
+        $this->mpdtadjstkchk->FSaMPASUpdDocNoToDTCut($aDataQuery);          // อัพเดท DocNo ตาราง DTCut
         
         echo json_encode($aReturnAddEditHD);
     }
