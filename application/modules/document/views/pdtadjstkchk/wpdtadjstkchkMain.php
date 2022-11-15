@@ -141,10 +141,10 @@
                                             <div class="form-group form-horizontal">
                                                 <label class="col-sm-3 control-label" style="padding-left:0px;"><?=language('document/pdtadjstkchk', 'tPASNavTabFromCode'); ?></label>
                                                 <div class="input-group col-sm-9">
-                                                    <input type="text" id="oetPASPdtFromCode" name="oetPASPdtFromCode" class="form-control"  value="">
+                                                    <input type="text" id="oetPASPdtFromCode" name="oetPASPdtFromCode" class="form-control xWDisabledOnApvSub"  value="">
                                                     <input type="text" id="oetPASPdtFromName" name="oetPASPdtFromName" class="form-control xCNHide"  value="">
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseProductFrom" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseProductFrom" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -165,10 +165,10 @@
                                             <div class="form-group form-horizontal">
                                                 <label class="col-sm-3 control-label" style="padding-left:0px;"><?=language('document/pdtadjstkchk', 'tPASNavTabToCode');?></label>
                                                 <div class="input-group col-sm-9">
-                                                    <input type="text" id="oetPASPdtToCode" name="oetPASPdtToCode" class="form-control"  value="">
+                                                    <input type="text" id="oetPASPdtToCode" name="oetPASPdtToCode" class="form-control xWDisabledOnApvSub"  value="">
                                                     <input type="text" id="oetPASPdtToName" name="oetPASPdtToName" class="form-control xCNHide"  value="">
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseProductTo" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseProductTo" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -187,7 +187,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="form-group text-center" style="margin-bottom:7px;margin-top: 15px;">
-                                                <button type="button" data-tab="Pdt" class="btn xWPASBtnAddFormCodeToCode"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
+                                                <button type="button" data-tab="Pdt" class="btn xWPASBtnAddFormCodeToCode xWDisabledOnApvSub"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
                                             </div>
                                         </div>
 
@@ -195,10 +195,10 @@
                                             <div class="form-group form-horizontal">
                                                 <label class="col-sm-3 control-label" style="padding-left:0px;"><?=language('document/pdtadjstkchk', 'tPASNavTabFromCode'); ?></label>
                                                 <div class="input-group col-sm-9">
-                                                    <input type="text" id="oetPASPdtSupFromCode" name="oetPASPdtSupFromCode" class="form-control"  value="">
+                                                    <input type="text" id="oetPASPdtSupFromCode" name="oetPASPdtSupFromCode" class="form-control xWDisabledOnApvSub"  value="">
                                                     <input type="text" id="oetPASPdtSupFromName" name="oetPASPdtSupFromName" class="form-control xCNHide"  value="">
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseSupplierFrom" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseSupplierFrom" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -219,10 +219,10 @@
                                             <div class="form-group form-horizontal">
                                                 <label class="col-sm-3 control-label" style="padding-left:0px;"><?=language('document/pdtadjstkchk', 'tPASNavTabToCode'); ?></label>
                                                 <div class="input-group col-sm-9">
-                                                    <input type="text" id="oetPASPdtSupToCode" name="oetPASPdtSupToCode" class="form-control"  value="">
+                                                    <input type="text" id="oetPASPdtSupToCode" name="oetPASPdtSupToCode" class="form-control xWDisabledOnApvSub"  value="">
                                                     <input type="text" id="oetPASPdtSupToName" name="oetPASPdtSupToName" class="form-control xCNHide"  value="">
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseSupplierTo" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseSupplierTo" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -241,7 +241,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="form-group text-center" style="margin-bottom:7px;margin-top: 15px;">
-                                                <button type="button" data-tab="PdtSup" class="btn xWPASBtnAddFormCodeToCode"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
+                                                <button type="button" data-tab="PdtSup" class="btn xWPASBtnAddFormCodeToCode xWDisabledOnApvSub"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
                                             </div>    
                                         </div>
 
@@ -249,10 +249,10 @@
                                             <div class="form-group form-horizontal">
                                                 <label class="col-sm-3 control-label" style="padding-left:0px;"><?=language('document/pdtadjstkchk', 'tPASNavTabFromCode'); ?></label>
                                                 <div class="input-group col-sm-9">
-                                                    <input type="text" id="oetPASUserFromCode" name="oetPASUserFromCode" class="form-control"  value="">
+                                                    <input type="text" id="oetPASUserFromCode" name="oetPASUserFromCode" class="form-control xWDisabledOnApvSub"  value="">
                                                     <input type="text" id="oetPASUserFromName" name="oetPASUserFromName" class="form-control xCNHide"  value="">
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseUserFrom" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseUserFrom" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -273,10 +273,10 @@
                                             <div class="form-group form-horizontal">
                                                 <label class="col-sm-3 control-label" style="padding-left:0px;"><?=language('document/pdtadjstkchk', 'tPASNavTabToCode'); ?></label>
                                                 <div class="input-group col-sm-9">
-                                                    <input type="text" id="oetPASUserToCode" name="oetPASUserToCode" class="form-control"  value="">
+                                                    <input type="text" id="oetPASUserToCode" name="oetPASUserToCode" class="form-control xWDisabledOnApvSub"  value="">
                                                     <input type="text" id="oetPASUserToName" name="oetPASUserToName" class="form-control xCNHide"  value="">
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseUserTo" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseUserTo" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -295,7 +295,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="form-group text-center" style="margin-bottom:7px;margin-top: 15px;">
-                                                <button type="button" data-tab="User" class="btn xWPASBtnAddFormCodeToCode"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
+                                                <button type="button" data-tab="User" class="btn xWPASBtnAddFormCodeToCode xWDisabledOnApvSub"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
                                             </div>
                                         </div>
                                         
@@ -306,7 +306,7 @@
                                                     <input type="text" id="oetPASGrpPdtCode" name="oetPASGrpPdtCode" class="form-control xCNHide" value="">
                                                     <input type="text" id="oetPASGrpPdtName" name="oetPASGrpPdtName" class="form-control"  value="" readonly>
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseGroup" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseGroup" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -325,7 +325,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="form-group text-center" style="margin-bottom:7px;margin-top: 15px;">
-                                                <button type="button" data-tab="Group" class="btn xWPASBtnAddFormCodeToCode"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
+                                                <button type="button" data-tab="Group" class="btn xWPASBtnAddFormCodeToCode xWDisabledOnApvSub"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
                                             </div>
                                         </div>
                                         <div id="odvPASTabLocation" class="tab-pane fade" style="margin-top:20px;">
@@ -334,7 +334,7 @@
                                                 <div class="input-group col-sm-9">
                                                     <input type="text" id="oetPASLocCode" name="oetPASLocCode" class="form-control"  value="" readonly>
                                                     <span class="input-group-btn">
-                                                        <button id="obtBrowseLoc" type="button" class="btn xCNBtnBrowseAddOn">
+                                                        <button id="obtBrowseLoc" type="button" class="btn xCNBtnBrowseAddOn xWDisabledOnApvSub">
                                                             <img class="xCNIconFind">
                                                         </button>
                                                     </span>
@@ -354,7 +354,7 @@
                                             <p class="col-sm-3"></p>
                                             <p class="bg-warning xWPASLocName col-sm-9" style="padding:5px;margin-bottom:10px;background-color: #ffe0c1;"></p>
                                             <div class="form-group text-center" style="margin-bottom:7px;margin-top: 15px;">
-                                                <button type="button" data-tab="Location" class="btn xWPASBtnAddFormCodeToCode"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
+                                                <button type="button" data-tab="Location" class="btn xWPASBtnAddFormCodeToCode xWDisabledOnApvSub"><i class="fa fa-arrow-down"></i> <?=language('document/pdtadjstkchk', 'tPASBtnImportToTable');?></button>
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +412,7 @@
                                                     foreach($aGetLoc['aItems'] AS $tKey => $aValue){
                                                 ?>
                                                     <tr class="text-left">
-                                                        <td nowrap><input type="checkbox" class="xWPASPlcCode" name="orbPASLocation[]" value="<?=$aValue['FTPlcCode']?>" <?php if($tKey == 0){ echo "checked"; }?>></td>
+                                                        <td nowrap><input type="checkbox" class="xWPASPlcCode xWDisabledOnApvSub" name="orbPASLocation[]" value="<?=$aValue['FTPlcCode']?>" <?php if($tKey == 0){ echo "checked"; }?>></td>
                                                         <td style="width:45%;" nowrap><?=$aValue['FTPlcCode']?></td>
                                                         <td style="width:45%;" nowrap><?=$aValue['FTPlcName']?></td>
                                                     </tr>

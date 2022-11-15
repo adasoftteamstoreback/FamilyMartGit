@@ -800,6 +800,23 @@ function JSxPASControlButton() {
             }
             $('.xCNImageInsert').removeClass('xCNBlockWhenApprove');
             $('#oetPASAddPdt').attr('disabled', false);
+
+            if( tStaPrcDoc == '2' ){ // ถ้าอนุมัติใบย่อยไปแล้ว กลับมาดูใบย่อยต้องแก้ไขไม่ได้
+                $('.xWDisabledOnApvSub').attr('disabled', true);
+                $('.xWInputCanEdit').attr('disabled', true);
+                $('.xWIconDelete').addClass('xCNBlockWhenApprove');
+                $('.xCNImageInsert').addClass('xCNBlockWhenApprove');
+                $('.xWDatepicker').attr('disabled', true);
+                $('.xWTimepicker').attr('disabled', true);
+            }else{
+                $('.xWDisabledOnApvSub').attr('disabled', false);
+                $('.xWInputCanEdit').attr('disabled', false);
+                $('.xWIconDelete').removeClass('xCNBlockWhenApprove');
+                $('.xCNImageInsert').removeClass('xCNBlockWhenApprove');
+                $('.xWDatepicker').attr('disabled', false);
+                $('.xWTimepicker').attr('disabled', false);
+            }
+
             break;
         case "2":
             JSxPASControlSubMenu(2);

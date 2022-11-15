@@ -157,10 +157,10 @@
         </tbody>
         <tfoot>
             <tr>
-                <td><img class="xCNImageInsert" style="margin:auto;" src="<?=$tBase_url?>application/modules/common/assets/images/icons/add-circular2.png"></td> <!-- xCNBlockWhenApprove -->
+                <td><img class="xCNImageInsert xWDisabledOnApvSub" style="margin:auto;" src="<?=$tBase_url?>application/modules/common/assets/images/icons/add-circular2.png"></td> <!-- xCNBlockWhenApprove -->
                 <th  colspan="2">
                     <label class="field a-field a-field_a1 page__field" style="margin-bottom:0px;">
-                        <input class="field__input a-field__input xCNInsertInputPDTorBarcode xCNInputWithoutSingleQuote xWInputAddPdt" id="oetPASAddPdt" type="text" autocomplete="off" placeholder="<?=language('common/systems', 'tPlaceholderProductorbarcode')?>" maxlength="25">
+                        <input class="field__input a-field__input xCNInsertInputPDTorBarcode xCNInputWithoutSingleQuote xWInputAddPdt xWDisabledOnApvSub" id="oetPASAddPdt" type="text" autocomplete="off" placeholder="<?=language('common/systems', 'tPlaceholderProductorbarcode')?>" maxlength="25">
                     </label>
                 </th>
                 <th  colspan="9999"></th>
