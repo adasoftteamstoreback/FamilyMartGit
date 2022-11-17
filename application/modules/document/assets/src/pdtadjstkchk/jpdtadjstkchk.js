@@ -1337,23 +1337,23 @@ function JSxPASApprove() {
             $('#osmConfirmRabbit').on("click", function(event) {
                 setTimeout(function() {
                     JSvPASCallPageMain(tDocNo, 4);
-                    $.ajax({
-                        type: "POST",
-                        url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSxCPASUpdStaExport",
-                        data: {
-                            ptDocNo: tDocNo,
-                        },
-                        cache: false,
-                        timeout: 0,
-                        success: function() {
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSxCPASUpdStaExport",
+                    //     data: {
+                    //         ptDocNo: tDocNo,
+                    //     },
+                    //     cache: false,
+                    //     timeout: 0,
+                    //     success: function() {
                             setTimeout(function() {
                                 JSxPASCallStimulReport();
                             }, 500);
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.log('jqXHR: ' + jqXHR + ' textStatus: ' + textStatus + ' errorThrown: ' + errorThrown);
-                        }
-                    });
+                    //     },
+                    //     error: function(jqXHR, textStatus, errorThrown) {
+                    //         console.log('jqXHR: ' + jqXHR + ' textStatus: ' + textStatus + ' errorThrown: ' + errorThrown);
+                    //     }
+                    // });
 
                 }, 500);
             });

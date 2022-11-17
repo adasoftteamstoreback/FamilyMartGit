@@ -2506,11 +2506,7 @@ class mpdtadjstkchk extends Database {
                         FROM TCNTPdtStkCard STKL WITH(NOLOCK)
                         INNER JOIN TCNTPdtChkDT DTL WITH(NOLOCK) ON DTL.FTIudStkCode = STKL.FTPdtStkCode AND DTL.FTBchCode = STKL.FTBchCode
                         WHERE DTL.FTIuhDocNo = '$paData[FTIuhDocNo]'
-                        -- AND STKL.FDStkDate BETWEEN CONVERT(VARCHAR(10),DTL.FDIudChkDate,121) AND CONVERT(VARCHAR(10),GETDATE(),121)
-                        -- AND STKL.FTTimeIns BETWEEN CONVERT(VARCHAR(8),DTL.FTIudChkTime,8) AND CONVERT(VARCHAR(8),GETDATE(),8)
-                        AND STKL.FDDateIns BETWEEN CONVERT(VARCHAR(10),DTL.FDIudChkDate,121) AND CONVERT(VARCHAR(10),STKL.FDDateIns,121)
-	                    AND STKL.FTTimeIns BETWEEN CONVERT(VARCHAR(8),DTL.FTIudChkTime,8) AND CONVERT(VARCHAR(8),STKL.FTTimeIns,8)
-                        --AND LEFT(FTStkDocNo,2) NOT IN ('TE','TD')
+                        AND (CONVERT(varchar(8),STKL.FDDateIns,112) + STKL.FTTimeIns) BETWEEN CONVERT(VARCHAR(8),DTL.FDIudChkDate,112) + DTL.FTIudChkTime AND CONVERT(VARCHAR(8),DTL.FDDateUpd,112) + DTL.FTTimeUpd
                         AND (LEFT(FTStkDocNo,2) != 'TE' AND LEFT(FTStkDocNo,2) != 'TD')
                         GROUP BY DTL.FTIuhDocNo,STKL.FTBchCode,STKL.FTPdtStkCode
                     ) STK ON DT.FTIudStkCode = STK.FTPdtStkCode AND DT.FTBchCode = STK.FTBchCode AND DT.FTIuhDocNo = STK.FTIuhDocNo

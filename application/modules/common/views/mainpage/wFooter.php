@@ -701,7 +701,7 @@
         }else if(aDataRecive[0]['ptProgress'] == '1'){
             $('#odvModalMQReciveMessage').html('<p style="text-decoration:blink"><center>ระบบกำลังประมวลผลข้อมูล กรุณารอสักครู่</center></p>');
         }else if(aDataRecive[0]['ptProgress'] == '0'){
-            $('#odvModalMQReciveMessage').html('');
+            $('#odvModalMQReciveMessage').html('<p style="text-decoration:blink"><center>ระบบกำลังประมวลผลข้อมูล กรุณารอสักครู่</center></p>');
         }
     }
 

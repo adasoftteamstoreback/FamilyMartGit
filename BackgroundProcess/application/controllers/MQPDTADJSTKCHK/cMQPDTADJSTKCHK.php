@@ -178,6 +178,7 @@ class cMQPDTADJSTKCHK extends cMQ{
             if( $aSubHDDocDate['nStaReturn'] == 1 ){
                 $dSubHDDocDate  = $aSubHDDocDate['aResult']['FDIuhDocDate'];
                 $dDateCurrent   = date('Y-m-d');
+                $this->FSxCMQWriteLog("[AutoExport] วันที่ปัจจุบัน:".$dDateCurrent." วันที่ใบย่อย:".$dSubHDDocDate);
                 if( $dDateCurrent > $dSubHDDocDate ){
                     $aFirstMsg = [
                         'ExportServiceList' => [
@@ -203,7 +204,13 @@ class cMQPDTADJSTKCHK extends cMQ{
                         'tMsg'          => json_encode($aFirstMsg)
                     ];
                     $this->FSxMQPublish($aPublishParams);
+
+                    $this->FSxCMQWriteLog("[AutoExport] ".json_encode($aFirstMsg));
+                    $this->FSxCMQWriteLog("[AutoExport] ส่งข้อมูลให้ MQ Success");
+                }else{
+                    $this->FSxCMQWriteLog("[AutoExport] เอกสารนี้อนุมัติภายในวัน ไม่ต้อง Export");
                 }
+
                 $this->FSaReturnProgress('95',$paData['ptDocNo']);
                 $this->db->trans_commit();
             }else{
