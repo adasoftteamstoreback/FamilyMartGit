@@ -3355,6 +3355,24 @@ class mpdtadjstkchk extends Database {
         return $aDataResult;
     }
 
+    // Create By: Napat(Jame) 18/11/2022
+    // อัพเดทวันที่-เวลา เอกสารใบรวมเพื่อให้ระบบคำนวณยอด เคลื่อนไหวหลังตรวจนับใหม่ได้ถูกต้อง
+    public function FSxMPASUpdDateTimeB4Apv($paData){
+        $tSQL1 = "  UPDATE TCNTPdtChkHD WITH(ROWLOCK)
+                    SET FDDateUpd   = CONVERT(VARCHAR,GETDATE(),23),
+                        FTTimeUpd   = CONVERT(VARCHAR,GETDATE(),24),
+                        FTWhoUpd    = '$paData[FTWhoUpd]' 
+                    WHERE FTIuhDocNo = '$paData[FTIuhDocNo]' AND FTBchCode = '$paData[FTBchCode]' ";
+        $this->DB_EXECUTE($tSQL1);
+
+        $tSQL2 = "  UPDATE TCNTPdtChkDT WITH(ROWLOCK)
+                    SET FDDateUpd   = CONVERT(VARCHAR,GETDATE(),23),
+                        FTTimeUpd   = CONVERT(VARCHAR,GETDATE(),24),
+                        FTWhoUpd    = '$paData[FTWhoUpd]' 
+                    WHERE FTIuhDocNo = '$paData[FTIuhDocNo]' AND FTBchCode = '$paData[FTBchCode]' ";
+        $this->DB_EXECUTE($tSQL2);
+    }
+
 }
 
 ?>

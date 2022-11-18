@@ -1560,6 +1560,8 @@ class mMQPDTADJSTKCHK extends CI_Model {
         $tBchCode   = $paData['pnBchCode'];
         $tDocNo     = $paData['ptDocNo'];
 
+        $this->FSxMMSQPASWriteLog("[FSxMRABPASCallStoredUpdatePdtChkDT] START CALL STP_PRCxUpdatePdtChkDT");
+
         //ลบ TmpTable เดิมก่อน
         $tCallStore = " {CALL STP_PRCxUpdatePdtChkDT(?,?,?,?)} ";
         $aDataStore = array(
@@ -1568,14 +1570,17 @@ class mMQPDTADJSTKCHK extends CI_Model {
             'pnResult'      => 0,
             'ptResultLog'   => '',
         );
-        $this->db->query($tCallStore, $aDataStore);
+        $this->FSxMMSQPASWriteLog("[FSxMRABPASCallStoredUpdatePdtChkDT] Parameters: ".json_encode($aDataStore));
+        $oReturn = $this->db->query($tCallStore, $aDataStore);
+        $this->FSxMMSQPASWriteLog("[FSxMRABPASCallStoredUpdatePdtChkDT] ".json_encode($oReturn));
+
         if($this->db->trans_status() === FALSE){
             $aRetrun = array(
                 'nStaReturn'    => 99,
                 'aMessageError' => "[FSxMRABPASCallStoredUpdatePdtChkDT] ".$this->db->error()['message']
             );
             $this->FSxMMSQPASWriteLog($aRetrun['aMessageError']);
-            return $aRetrun;
+            // return $aRetrun;
         }
     }
 
