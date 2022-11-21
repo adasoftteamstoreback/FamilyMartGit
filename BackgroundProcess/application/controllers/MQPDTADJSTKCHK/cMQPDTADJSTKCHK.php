@@ -172,6 +172,18 @@ class cMQPDTADJSTKCHK extends cMQ{
             // $this->FSaReturnProgress('80',$paData['ptDocNo']);
             $this->$tConnectModal->FSxMRABPASCallStoredUpdatePdtChkDT($paData);
 
+            $this->FSxCMQWriteLog("[FSaMRABPASChkTSysSQL] Start Check STP_PRCxUpdatePdtChkDT");
+            $x = 0;
+            while($x = 1) {
+                $aChkTSysSQL = $this->$tConnectModal->FSaMRABPASChkTSysSQL($paData);
+                $tPrcSta = $aChkTSysSQL['aResult'];
+                if( $tPrcSta == "Y" ){
+                    $x = 1;
+                }
+            }
+            $this->FSxCMQWriteLog("[FSaMRABPASChkTSysSQL] Finish Check STP_PRCxUpdatePdtChkDT");
+            
+
             //STEP 9 Export Zip File
             //Last Update: Napat(Jame) 14/10/2022 RQ-12 กรณีอนุมัติข้ามวัน หลังจากที่ทำการอนุมัติเรียบร้อยแล้ว จะต้องทำการ Auto Export ข้อมูลออกไป HQ
             $aSubHDDocDate = $this->$tConnectModal->FSxMRABPASGetMaxDocDateSubHD($paData); // ค้นหาวันที่บันทึกเอกสารของใบย่อย

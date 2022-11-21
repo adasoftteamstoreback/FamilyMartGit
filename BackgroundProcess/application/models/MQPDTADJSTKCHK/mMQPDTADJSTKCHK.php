@@ -1609,4 +1609,16 @@ class mMQPDTADJSTKCHK extends CI_Model {
         }
         return $aRetrun;
     }
+
+    // Create By : Napat(Jame) 21/11/2022
+    public function FSaMRABPASChkTSysSQL(){
+        $tSQL = " SELECT FTSqlCmd AS FTPrcSta FROM TSysSQL WHERE FTSqlCode='AdaAutoPrc' and FNSqlSeq='1' ";
+        $oQuery = $this->db->query($tSQL);
+        $aRetrun = array(
+            'aResult'       => $oQuery->row_array()['FTPrcSta'],
+            'nStaReturn'    => 1,
+            'aMessageError' => "[FSaMRABPASChkTSysSQL] ".$oQuery->row_array()['FTPrcSta']
+        );
+        return $aRetrun;
+    }
 }

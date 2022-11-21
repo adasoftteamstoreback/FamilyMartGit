@@ -667,7 +667,7 @@ class comnPdtAdjStkChkNew extends Controller {
         try{
             $aConditionData = array(
                 'FTIuhDocNo'        => $this->input->post('FTIuhDocNo'),
-                'FTBchCode'         => $this->tBchCode
+                'FTBchCode'         => $this->tBchCode,
                 'FTWhoUpd'          => $_SESSION["SesUsername"],
             );
 

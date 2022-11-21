@@ -1,4 +1,8 @@
-﻿Version 4.2.64
+﻿Version 4.2.65
+
+4.2.65 Napat(Jame)
+- [2022/11/21] 
+    - เพิ่มการ while loop ตรวจสอบว่า Stored: STP_PRCxUpdatePdtChkDT ทำงานเสร็จหรือยัง และเขียน log เก็บข้อมูลไว้
 
 4.2.64 Napat(Jame)
 - [2022/11/17] 
