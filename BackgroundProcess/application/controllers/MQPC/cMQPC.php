@@ -306,6 +306,7 @@ class cMQPC extends cMQ{
 			'tQname'		=> 'ExportService',
             'tMsg'          => $aFirstMsg
         ];
+        $this->FSxCMQWriteLog("[FSxCRABCallExport] ".json_encode($aPublishParams));
         $this->FSxMQPublish($aPublishParams);
     }
     

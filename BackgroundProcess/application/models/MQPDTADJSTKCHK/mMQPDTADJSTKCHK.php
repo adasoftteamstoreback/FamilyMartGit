@@ -1612,7 +1612,7 @@ class mMQPDTADJSTKCHK extends CI_Model {
 
     // Create By : Napat(Jame) 21/11/2022
     public function FSaMRABPASChkTSysSQL(){
-        $tSQL = " SELECT FTSqlCmd AS FTPrcSta FROM TSysSQL WHERE FTSqlCode='AdaAutoPrc' and FNSqlSeq='1' ";
+        $tSQL = " SELECT FTSqlCmd AS FTPrcSta FROM TSysSQL WITH(NOLOCK) WHERE FTSqlCode = 'AdaAutoPrc' AND FNSqlSeq = 1 ";
         $oQuery = $this->db->query($tSQL);
         $aRetrun = array(
             'aResult'       => $oQuery->row_array()['FTPrcSta'],
@@ -1620,5 +1620,15 @@ class mMQPDTADJSTKCHK extends CI_Model {
             'aMessageError' => "[FSaMRABPASChkTSysSQL] ".$oQuery->row_array()['FTPrcSta']
         );
         return $aRetrun;
+    }
+
+    // Create By : Napat(Jame) 01/12/2022
+    public function FSxMRABPASUpdExpFullCnt($paData){
+        /*เลขที่เอกสารตรวจนับใบรวม ที่ได้จากการอนุมัติ*/
+        $tDocNo = $paData['ptDocNo'];
+        $tSQL = "   UPDATE TSysSQL WITH(ROWLOCK)
+                    SET FTSqlCmd = '".$tDocNo."'
+                    WHERE (FTSqlCode = 'ExpFullCnt' AND FNSqlSeq = 1) ";
+        $this->db->query($tSQL);
     }
 }

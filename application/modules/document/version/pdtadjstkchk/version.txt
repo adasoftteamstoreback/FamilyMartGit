@@ -1,4 +1,8 @@
-﻿Version 4.2.65
+﻿Version 4.2.66
+
+4.2.66 Napat(Jame)
+- [2022/12/01] 
+    - เพิ่มการเรียก RunExpFullCount.vbs เพื่อสั่งให้ export
 
 4.2.65 Napat(Jame)
 - [2022/11/21] 
