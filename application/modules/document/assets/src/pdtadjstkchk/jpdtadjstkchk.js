@@ -816,7 +816,7 @@ function JSxPASControlButton() {
                 $('.xWDatepicker').attr('disabled', false);
                 $('.xWTimepicker').attr('disabled', false);
             }
-
+            $('#oetPASDocDate').attr('readonly', true);
             break;
         case "2":
             JSxPASControlSubMenu(2);
@@ -831,7 +831,8 @@ function JSxPASControlButton() {
             $('.xWPASBTCancel').hide();
             $('.xWPASBTNext').show().attr('disabled', false);
             $('.xWPASBTPrevious').show();
-            $('#oetPASDocDate').attr('readonly', false);
+            // $('#oetPASDocDate').attr('readonly', false);
+            $('#oetPASDocDate').attr('readonly', true);
             $('.xWInputCanEdit').attr('disabled', false);
             $('.xWIconDelete').removeClass('xCNBlockWhenApprove');
             $('.xCNImageInsert').addClass('xCNBlockWhenApprove');

@@ -67,7 +67,7 @@
                     //     $nAfterCount    = 0;
                     // }
         ?>
-                    <tr class="xWPASProductSeq<?=$tValue['FNIudSeqNo']?> xWPASDataPdtList xCNTableTrClickActive" data-seq="<?=$tValue['FNIudSeqNo']?>">
+                    <tr class="xWPASProductSeq<?=$tValue['FNIudSeqNo']?> xWPASDataPdtList xCNTableTrClickActive" data-seq="<?=$tValue['FNIudSeqNo']?>" data-stkcode="<?=$tValue['FTIudStkCode']?>" data-pdtname="<?=$tValue['FTPdtName']?>">
                         <td nowrap><?=$tValue['FNIudSeqNo']?></td>
                         <td nowrap><?=$tValue['FTIudStkCode']?>
                             <!-- <div class="field a-field a-field_a1 page__field">
@@ -410,7 +410,20 @@ if($aDataTable['nStaQuery'] == 1){
 
     $('.xWIconDelete').off('click');
     $('.xWIconDelete').on('click',function(){
-        JSxPASDeleteProduct($(this));
+        var tStkCode = $(this).parent().parent().data('stkcode');
+        var tPdtName = $(this).parent().parent().data('pdtname');
+        var oElm     = $(this);
+        
+        var aModalText = {
+			tHead	: '<?=language('common/systems', 'tModalDelete')?>',
+			tDetail	: '<?=language('common/systems', 'tModalConfirmDeleteItems')?>' + ' ' + tStkCode + ' (' + tPdtName + ')',
+			nType	: 1
+		};
+		JSxPASAlertMessage(aModalText);
+		$('.xWPASConfirmAlertMessage').off('click');
+		$('.xWPASConfirmAlertMessage').on("click",function(){
+			JSxPASDeleteProduct(oElm);
+		});
     });
     
     //New Edit inline
