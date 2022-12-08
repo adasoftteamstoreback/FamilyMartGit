@@ -462,19 +462,21 @@ class mpdtadjstkchk extends Database {
 
 
         //ค้นหา Seq ล่าสุด
-        $tSQL_Seq   = "SELECT TOP 1 FNIudSeqNo FROM TCNTPdtChkDT WHERE FTIuhDocNo='$tDocNo' AND FTIuhDocType='1' AND FTBchCode='$aGetBranch[FTBchCode]' ORDER BY FNIudSeqNo DESC";
+        $tSQL_Seq   = "SELECT TOP 1 FNIudSeqNo,FTPszName FROM TCNTPdtChkDT WHERE FTIuhDocNo='$tDocNo' AND FTIuhDocType='1' AND FTBchCode='$aGetBranch[FTBchCode]' ORDER BY FNIudSeqNo DESC";
         $aDataList  = $this->DB_SELECT($tSQL_Seq);
         
         if(count($aDataList) > 0){
-            $nSeq = $aDataList[0]['FNIudSeqNo'];
+            $nSeq       = $aDataList[0]['FNIudSeqNo'];
+            $tPassword  = $aDataList[0]['FTPszName'];
         }else{
-            $nSeq = 0;
+            $nSeq       = 0;
+            $tPassword  = '';
         }
 
         $tSQL  = "INSERT INTO TCNTPdtChkDT (FTBchCode,FTIuhDocNo,FDIuhDocDate,FTIuhDocType,FTPlcCode,FTPdtCode,FTIudBarCode,FTPdtName,FTPunName
                     ,FTWahCode,FCIudUnitC1,FCIudUnitC2,FCIudQtyC1,FCIudQtyC2,FCIudWahQty,FCIudQtyDiff,FCIudQtyBal,FNIudSeqNo,FTPunCode
                     ,FCIudUnitFact,FTIudStkCode,FCIudSetPrice,FCIudStkFac,FTPgpChain,FCIudCost,FTPdtSaleType,FTPdtNoDis,FDIudChkDate
-                    ,FTIudChkTime,FCIudDIsAvg,FCIudFootAvg,FCIudRePackAvg,FTIudChkUser,FDDateUpd,FTTimeUpd,FTWhoUpd,FDDateIns,FTTimeIns,FTWhoIns)
+                    ,FTIudChkTime,FCIudDIsAvg,FCIudFootAvg,FCIudRePackAvg,FTIudChkUser,FDDateUpd,FTTimeUpd,FTWhoUpd,FDDateIns,FTTimeIns,FTWhoIns,FTPszName)
                  ";
         $tSQL .= "SELECT 
                     '$aGetBranch[FTBchCode]'        AS FTBchCode,
@@ -516,7 +518,8 @@ class mpdtadjstkchk extends Database {
                     '$tUser'                        AS FTWhoUpd,
                     '$dDate'                        AS FDDateIns,
                     '$tTime'                        AS FTTimeIns,
-                    '$tUser'                        AS FTWhoIns
+                    '$tUser'                        AS FTWhoIns,
+                    '$tPassword'                    AS FTPszName
         ";
 
         //TCNMPdt.FTPdtType IN ('1','2','3','4','5','6','7')

@@ -379,7 +379,11 @@ function JSxPASCheckDateTime(paTextChkDateTime, paTextConfirmCode) {
                     }
                 });
             } else {
-                JSxPASConfirmCode(paTextConfirmCode);
+                if (tDocNo == " ") {
+                    JSxPASConfirmCode(paTextConfirmCode);
+                } else {
+                    JSvPASCallDataTable(); // Napat(Jame) 08/12/2022 กรณีได้เลขที่ใบย่อยแล้ว เพิ่มสินค้าใหม่ เมื่อกดบันทึกให้โหลดหน้า DataTable ใหม่
+                }
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {

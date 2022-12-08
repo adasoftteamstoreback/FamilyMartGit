@@ -108,7 +108,7 @@
                         <td nowrap class="text-center <?php if($nTypePage==1){ echo "xCNColorEditLine"; }?>">
                             <?php if($nTypePage==1){ ?>
                                 <div class="field a-field a-field_a1 page__field">
-                                    <input id="oetPASIudChkDate<?=$tValue['FNIudSeqNo']?>" name="oetPASIudChkDate<?=$tValue['FNIudSeqNo']?>" class="xWPASNotNextFocus inputs field__input a-field__input text-center xWDatepicker xWDatePickerChange xCNInputAddressNumber " type="text" value="<?=(is_null($tValue['FDIudChkDate']) ? '' : date_format($tValue['FDIudChkDate'],'Y-m-d'))?>" style="padding: 0px;">
+                                    <input id="oetPASIudChkDate<?=$tValue['FNIudSeqNo']?>" name="oetPASIudChkDate<?=$tValue['FNIudSeqNo']?>" class="xWPASNotNextFocus inputs field__input a-field__input text-center xWDatepicker xWDatePickerChange xCNInputAddressNumber " type="text" value="<?=(is_null($tValue['FDIudChkDate']) ? '' : date_format($tValue['FDIudChkDate'],'Y-m-d'))?>" style="padding: 0px;" readonly>
                                 </div>
                             <?php 
                                 }else{ 
@@ -119,7 +119,7 @@
                         <td nowrap class="text-center <?php if($nTypePage==1){ echo "xCNColorEditLine"; }?>">
                             <?php if($nTypePage==1){ ?>
                                 <div class="field a-field a-field_a1 page__field">
-                                    <input id="oetPASIudChkTime<?=$tValue['FNIudSeqNo']?>" name="oetPASIudChkTime<?=$tValue['FNIudSeqNo']?>" class="xWPASNotNextFocus inputs field__input a-field__input text-center xWTimepicker " type="text" value="<?=(is_null($tValue['FTIudChkTime']) ? '' : date_format(date_create($tValue['FTIudChkTime']),'H:i:s')) ?>" style="padding: 0px;">
+                                    <input id="oetPASIudChkTime<?=$tValue['FNIudSeqNo']?>" name="oetPASIudChkTime<?=$tValue['FNIudSeqNo']?>" class="xWPASNotNextFocus inputs field__input a-field__input text-center xWTimepicker " type="text" value="<?=(is_null($tValue['FTIudChkTime']) ? '' : date_format(date_create($tValue['FTIudChkTime']),'H:i:s')) ?>" style="padding: 0px;" readonly>
                                 </div>
                             <?php 
                                 }else{ 
