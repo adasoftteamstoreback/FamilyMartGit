@@ -225,7 +225,9 @@
                 printWindow.document.write('<title>'+$('#ohdReportTitle').val()+'</title>');  
                 printWindow.document.write(oResult);
                 printWindow.document.close();
-                printWindow.print();
+                printWindow.onload = function() { /* Napat(Jame) 19/05/2023 Comsheet/2023-032 เพิ่มการตรวจสอบ ให้หน้าจอโหลดเสร็จก่อนค่อยสั่งพิมพ์ */
+                    printWindow.print();
+                }
                 printWindow.onafterprint = function() {
                     printWindow.close();
                 }
@@ -235,6 +237,8 @@
                 console.log('jqXHR: ' + jqXHR + ' textStatus: ' + textStatus + ' errorThrown: ' + errorThrown);
             }
         });
+
+        // window.print();
 
     });
 
