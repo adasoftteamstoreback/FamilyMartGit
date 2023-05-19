@@ -192,15 +192,23 @@ class cMQPDTADJSTKCHK extends cMQ{
                 $dDateCurrent   = date('Y-m-d');
                 $this->FSxCMQWriteLog("[AutoExport] วันที่ปัจจุบัน:".$dDateCurrent." วันที่ใบย่อย:".$dSubHDDocDate);
                 if( $dDateCurrent > $dSubHDDocDate ){
-                    // $aFirstMsg = [
-                    //     'ExportServiceList' => [
-                    //         [
-                    //             'ptTbl'         => 'TCNTPdtChkHD',
-                    //             'ptDocType'     => '2',
-                    //             'ptPrcDocNo'    => $paData['ptDocNo'],
-                    //             'ptStartDocNo'  => '',
-                    //             'ptEndDocNo'    => ''
-                    //         ],
+
+                    // อัพเดท FTSqlCode = 'ExpFullCnt' ก่อนสั่งรัน .vbs
+                    $this->$tConnectModal->FSxMRABPASUpdExpFullCnt($paData);
+                    // exec('C:\WINDOWS\system32\cmd.exe /c START ..\BackgroundProcess\RunExpFullCount.vbs');
+
+                    $aFirstMsg = [
+                        'ExportServiceList' => [
+                            [
+                                'ptTbl'         => 'TCNTPdtChkHD',
+                                'ptDocType'     => '2',
+                                'ptPrcDocNo'    => $paData['ptDocNo'],
+                                'ptStartDocNo'  => '',
+                                'ptEndDocNo'    => ''
+                            ]
+                        ]
+                    ];
+                    // ,
                     //         [
                     //             'ptTbl'         => 'TCNTPdtStkNotExist',
                     //             'ptDocType'     => '2',
@@ -208,18 +216,12 @@ class cMQPDTADJSTKCHK extends cMQ{
                     //             'ptStartDocNo'  => '',
                     //             'ptEndDocNo'    => ''
                     //         ]
-                    //     ]
-                    // ];
-                    // $aPublishParams = [
-                    //     'tMsgFormat'    => 'text',
-                    //     'tQname'        => 'ExportService',
-                    //     'tMsg'          => json_encode($aFirstMsg)
-                    // ];
-                    // $this->FSxMQPublish($aPublishParams);
-
-                    // อัพเดท FTSqlCode = 'ExpFullCnt' ก่อนสั่งรัน .vbs
-                    $this->$tConnectModal->FSxMRABPASUpdExpFullCnt($paData);
-                    exec('C:\WINDOWS\system32\cmd.exe /c START ..\BackgroundProcess\RunExpFullCount.vbs');
+                    $aPublishParams = [
+                        'tMsgFormat'    => 'text',
+                        'tQname'        => 'ExportService',
+                        'tMsg'          => json_encode($aFirstMsg)
+                    ];
+                    $this->FSxMQPublish($aPublishParams);
 
                     $this->FSxCMQWriteLog("[AutoExport] ".json_encode($aFirstMsg));
                     $this->FSxCMQWriteLog("[AutoExport] ส่งข้อมูลให้ MQ Success");
