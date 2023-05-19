@@ -153,3 +153,13 @@ $lang['tPASModalSearchHeader']              = "ส่วนเอกสาร";
 $lang['tPASModalSearchDetails']             = "ส่วนรายละเอียด";
 $lang['tPASModalSearchNo']                  = "ลำดับ";
 $lang['tPASModalSearchQtyAll']              = "จำนวน";
+
+
+$lang['tPASTableColumGonQty']               = "จำนวน<br>(ชิ้น)";
+$lang['tPASTableColumGon1']                 = "จุดที่ 1";
+$lang['tPASTableColumGon2']                 = "จุดที่ 2";
+$lang['tPASTableColumGon3']                 = "จุดที่ 3";
+$lang['tPASTableColumGon4']                 = "จุดที่ 4";
+$lang['tPASTableColumGon5']                 = "จุดที่ 5";
+$lang['tPASTableColumTotalQty']             = "ผลรวม<br>จำนวนทุกจุด";
+$lang['tPASTableColumNewQty']               = "จำนวนนับ<br>ใหม่";

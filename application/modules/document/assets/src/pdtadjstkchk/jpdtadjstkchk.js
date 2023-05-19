@@ -21,6 +21,18 @@ function JSxPASHideAllButton() {
 }
 
 function JSvPASCallPageMain(ptDocNo, pnTypePage) {
+    // console.log('ptDocNo', ptDocNo);
+    // console.log('pnTypePage', pnTypePage);
+    if( ptDocNo == "" && pnTypePage == 3 ){
+        $('.xWPASBTNext').data('page', pnTypePage);
+        $('.xWPASBTNext').attr('data-page', pnTypePage);
+        $('.xWPASBTPrevious').data('page', pnTypePage);
+        $('.xWPASBTPrevious').attr('data-page', pnTypePage);
+        $('#oetPASTypePage').val(pnTypePage);
+        JSxPASAddEditHD();
+        return;
+    }
+
     var nTypePage = "";
     if (ptDocNo == "" || ptDocNo === undefined) { ptDocNo = ' '; }
     if (pnTypePage == "" || pnTypePage === undefined) { // 1=เอกสารตรวจนับสินค้า 2=รวมเอกสารตรวจนับสินค้า
@@ -61,7 +73,7 @@ function JSvPASCallPageMain(ptDocNo, pnTypePage) {
                     nType: 2
                 });
                 $('#oetPASPassword').val(aReturn['tQuery']['aItems']['FTSplCode']);
-                JSvPASCallPageMain(ptDocNo, 2);
+                JSvPASCallPageMain(ptDocNo, 3);
             } else {
                 $('#odvPASContentMain').html(aReturn['tHTML']);
                 JSvPASCallDataTable('', nSetPageType);
@@ -446,6 +458,7 @@ function JSxPASConfirmCode(paModalText) {
 }
 
 function JSxPASAddEditHD() { //pnTypeUpd
+    $('#oetPASDocDate').attr('disabled', false);
     // console.log($('#ofmPdtAdjStkChk').serializeArray());
     var oDataList = $('#ofmPdtAdjStkChk').serialize();
     var tInput = $('#oetPASModalInput').val();
@@ -791,13 +804,15 @@ function JSxPASControlButton() {
         // $('.xWPASBtnAddFormCodeToCode').attr('disabled',true); // Comsheer 2019 335
         $('.xWPASBTSearchHQ').attr('disabled', true);
         // $('.xCNBtnBrowseAddOn').attr('disabled',true); // Comsheer 2019 335
-        $('#oetPASDocDate').attr('disabled', true);
+        $('#oetPASDocDate').attr('readonly', true);
         $('#ocbPASAdjType').attr('disabled', true);
     }
 
     //แบ่งหน้าตาม section
     switch (tTypePage) {
         case "1":
+            $('#ospTextHeadMenu').text('เอกสารตรวจนับสินค้า');
+            JSxPASExpandTitle(false);
             JSxPASControlSubMenu(1);
             if (tDocNo != "" && tChkDateDT == 'FALSE') {
                 $('.xWPASBTCancel').show();
@@ -823,6 +838,7 @@ function JSxPASControlButton() {
             $('#oetPASDocDate').attr('readonly', true);
             break;
         case "2":
+            JSxPASExpandTitle(false);
             JSxPASControlSubMenu(2);
             //ปิดปุ่มหน้า 1
             $('.xWPASBTSearchHQ').hide();
@@ -860,13 +876,14 @@ function JSxPASControlButton() {
             }
             break;
         case "3":
+            JSxPASExpandTitle(false);
             JSxPASControlSubMenu(3);
             $('.xWPASBTSearchHQ').hide();
             $('#otaPASNote').attr('readonly', true);
             $('.xWPASBTApprove').hide();
             $('.xWPASBTSave').show();
             $('.xWPASBTReport').show().attr('disabled', true);
-            $('.xWPASBTPrevious').show().attr('disabled', false);
+            $('.xWPASBTPrevious').hide();
             $('.xWPASBTNext').show().attr('disabled', true);
             $('#oetPASDocDate').attr('readonly', true);
             $('#ocbPASAdjType').attr('disabled', true);
@@ -886,6 +903,7 @@ function JSxPASControlButton() {
             }
             break;
         case "4":
+            JSxPASExpandTitle(false);
             JSxPASControlSubMenu(4);
             $('.xWPASBTSearchHQ').hide();
             $('#otaPASNote').attr('readonly', true);
@@ -899,6 +917,7 @@ function JSxPASControlButton() {
             $('.xWPASBTCancel').hide();
             $('.xWPASBTSave').hide();
             $('.xWPASBTNext').hide();
+            $('.xWPASBTPrevious').show().attr('disabled', false);
             $('.xWPASBTReport').show().attr('disabled', true);
 
             if (tStaPrcDoc == '1') {
@@ -914,6 +933,25 @@ function JSxPASControlButton() {
             }
 
             break;
+        case "5":
+            $('#ospTextHeadMenu').text('รายการสินค้าที่มีการตรวจนับสินค้ามากกว่า 1 Gondola และมีการขายเกิดขึ้นระหว่างการนับ');
+            JSxPASExpandTitle(true);
+            $('.xWPASBTSearchHQ').hide();
+            $('.xWPASBTSearch').hide();
+            $('.xWPASBTAddNew').hide();
+            $('.xWPASBTCancel').hide();
+            $('.xWPASBTPrevious').show().attr('disabled', false);;
+            break;
+    }
+}
+
+function JSxPASExpandTitle(pbExpand){
+    if(pbExpand){
+        $('#odvPASTitle').removeClass('col-md-3 col-lg-3').addClass('col-md-8 col-lg-8');
+        $('#odvPASButton').removeClass('col-md-9 col-lg-9').addClass('col-md-4 col-lg-4');
+    }else{
+        $('#odvPASTitle').removeClass('col-md-8 col-lg-8').addClass('col-md-3 col-lg-3');
+        $('#odvPASButton').removeClass('col-md-4 col-lg-4').addClass('col-md-9 col-lg-9');
     }
 }
 
@@ -1208,10 +1246,15 @@ function JSxPASNextStepConfirmCode(ptStep) {
                                     var aReturn = JSON.parse(oResult);
                                     // console.log(aReturn);
                                     if (aReturn['nStaQuery'] == 1) {
-                                        $('#oetPASDocNoPrevious').val(tDocNo);
+                                        $('#oetPASDocNoForReChkDT').val(tDocNo);
+                                        // $('#oetPASDocNoPrevious').val(tDocNo);
                                         $('#oetPASPassword').val($('#oetPASModalInput').val());
                                         $('#oetPASDocNo').val(''); // เคลียร์ DocNo
-                                        JSvPASCallPageMain('', 2); //เรียกหน้า รวมเอกสารตรวจนับสินค้า
+                                        // JSvPASCallPageMain('', 2); //เรียกหน้า รวมเอกสารตรวจนับสินค้า
+                                        JSvPASCallPageMain('', 3);
+                                        // setTimeout(() => {
+                                        //     JSxPASAddEditHD();
+                                        // }, 1000);
                                     } else if (aReturn['nStaQuery'] == 42000) {
                                         JSxContentLoader('hide');
                                         JCNxDisplayErrorSQL(aReturn['aResultAll']);
@@ -1950,4 +1993,98 @@ function JSxPASSearchDocRefClickPage(ptPage, ptType) {
         JSxPASCallSearchAutoReceiveList(tDocNo, nPageCurrent);
     }
     $('#oetPASCurrentPageSearchDocRefList').val(nPageCurrent);
+}
+
+// Function : เรียกข้อมูล TCNTPdtReChkDT
+// Create By : Napat(Jame) 29/03/2023
+function JSxPASCallPagePdtReChkDT(){
+    JSxContentLoader('show');
+    $.ajax({
+        type: "POST",
+        url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSoCPASPagePdtReChkDT",
+        data: {
+            ptDocNo         : $('#oetPASDocNo').val(),
+            nPageCurrent    : 1
+        },
+        cache: false,
+        timeout: 0,
+        success: function(oResult) {
+            var aResult = JSON.parse(oResult);
+            if( aResult['nStatus'] == 1 ){
+                $('.xWPASBTNext').data('page', 5);
+                $('.xWPASBTNext').attr('data-page', 5);
+                $('.xWPASBTPrevious').data('page', 5);
+                $('.xWPASBTPrevious').attr('data-page', 5);
+                $('#oetPASTypePage').val(5);
+                $('.xWPASTabMenuProduct, #odvPASPanel1, #odvPASPanel2').hide();
+                JSxPASControlButton();
+                $('#odvPASContentTables').html(aResult['tHTML']);
+            }else{
+                // JSxPASAlertMessage(aModalText = {
+                //     tHead: 'Error',
+                //     tDetail: aResult['tStaMessage'],
+                //     nType: 2
+                // });
+                var aModalText = {
+					tHead	: 'Next',
+					tDetail	: 'ในการรวมเอกสารตรวจนับ เอกสารย่อยจะถูกอนุมัติและไม่สามารถแก้ไขได้<br>คุณต้องการทำต่อไปหรือไม่ ?',
+					nType	: 1
+				};
+				JSxPASNextStep(aModalText);
+            }
+            JSxContentLoader('hide');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log('jqXHR: ' + jqXHR + ' textStatus: ' + textStatus + ' errorThrown: ' + errorThrown);
+        }
+    });
+}
+
+//Edit inline ของหน้าจอ รายการสินค้าที่มีการตรวจนับสินค้ามากกว่า 1 Gondola และมีการขายเกิดขึ้นระหว่างการนับ
+// Create By : Napat(Jame) 29/03/2023
+function JSxPASPdtReChkDTEditInLine(poElm, pnType) {
+
+    if (sessionStorage.getItem("EditInLine") == "1") {
+        sessionStorage.setItem("EditInLine", "2");
+        var tDocNo = $('#oetPASDocNo').val();
+        var tSeq = poElm.parent().parent().parent().data('seq');
+
+        // Check Values if null or ""
+        if ($('#oetPASIudNewQty' + tSeq).val() == "") { $('#oetPASIudNewQty' + tSeq).val(0); }
+
+        // Set Values
+        var nVal = parseInt($('#oetPASIudNewQty' + tSeq).val());
+
+        if (tDocNo == "" || tDocNo === undefined) { tDocNo = ' '; }
+
+        $.ajax({
+            type: "POST",
+            url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSxCPASPdtReChkDTEditInLine",
+            data: {
+                ptDocNo: tDocNo,
+                ptSeq: tSeq,
+                pnVal: nVal
+            },
+            cache: false,
+            timeout: 0,
+            success: function(oResult) {
+                var aReturn = JSON.parse(oResult);
+                // console.log(aReturn);
+                if (aReturn['nStaQuery'] != 1) {
+                    JSxPASAlertMessage(aModalText = {
+                        tHead: 'Error',
+                        tDetail: aReturn['nStaQuery']['tStaMessage'],
+                        nType: 2
+                    });
+                }
+
+                sessionStorage.removeItem("EditInLine");
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('jqXHR: ' + jqXHR + ' textStatus: ' + textStatus + ' errorThrown: ' + errorThrown);
+            }
+        });
+    }
+
 }

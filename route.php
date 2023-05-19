@@ -115,5 +115,11 @@
     // รายการผลการตรวจนับสต็อกสินค้า
     $tROUTE_rptAllPdtChkStkDif              = 'application/modules/report/controllers/rptAllPdtChkStkDif/cRptAllPdtChkStkDif.php';
     $tROUTE_rptAllPdtChkStkDif_content      = 'Content.php?route=rptAllPdtChkStkDif&func_method=FSvCCallRptViewBeforePrint';
+
+    // Create 31/03/2023 Napat(Jame)
+    // รายงานการตรวจนับสินค้ามากกว่า 1 Gondola
+    $tROUTE_rptPdtReChkDT              = 'application/modules/report/controllers/rptPdtReChkDT/cRptPdtReChkDT.php';
+    $tROUTE_rptPdtReChkDT_content      = 'Content.php?route=rptPdtReChkDT&func_method=FSvCCallRptViewBeforePrint';
+    
     
 ?>

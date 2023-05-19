@@ -35,8 +35,9 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="odvPanelcontent row xWForm-GroupDatePicker">
         <!--เลขที่เอกสาร-->
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left:0;font-size: 12px;">
+        <div id="odvPASPanel1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left:0;font-size: 12px;">
             <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> -->
+            <input type="text" class="xCNHide" id="oetPASDocNoForReChkDT" name="oetPASDocNoForReChkDT" value="">
             <input type="text" class="xCNHide" id="oetPASDocNo" name="oetPASDocNo" value="<?=$tIuhDocNo?>">
             <input type="text" class="xCNHide" id="oetPASIuhStaDoc" name="oetPASIuhStaDoc" value="<?=$tIuhStaDoc?>">
             <input type="text" class="xCNHide" id="oetPASIuhStaPrcDoc" name="oetPASIuhStaPrcDoc" value="<?=$tIuhStaPrcDoc?>">
@@ -109,7 +110,7 @@
         </div>
 
         <!--Panel ฝั่งซ้าย-->
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 5px;padding:0px;">
+        <div id="odvPASPanel2" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 5px;padding:0px;">
         <?php if($nTypePage==1){ ?>
             <!-- Panel เอกสาร -->
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="padding:0px;">
@@ -512,7 +513,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+        <div id="odvPASContentTables" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
             <div class="tab-content">
                 <div id="odvPASContentTable" class="tab-pane fade in active"></div> <!-- สินค้าตรวจนับ -->
                 <div id="odvPASContentTableWithOutSystem" class="tab-pane fade"></div> <!-- สินค้าไม่มีในระบบ -->

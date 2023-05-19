@@ -17,11 +17,11 @@
 <!--Head and BTN-->
 <div class="col-lg-12 col-sm-12 col-xs-12 odvPanelhead">
 	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+		<div id="odvPASTitle" class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
     		<p id="ospTextHeadMenu" class="ospTextHeadMenu" style="margin:0;"> <?=language('document/pdtadjstkchk', 'tPASHeadMenu')?> </p>
 			<p id="ospTextSumHeadMenu" class="ospTextHeadMenu" style="margin:0;"> <?=language('document/pdtadjstkchk', 'tPASSumHeadMenu')?> </p>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		<div id="odvPASButton" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 			<div class="odvHeadRight">
 				<!-- ปุ่มหน้าใบรวม(ใหม่) Create By: Napat(Jame) 05/08/2020 -->
 				<button class="btn xCNBTNActionSearchHQ xWPASBTSearchDO" type="button"> <?=language('document/pdtadjstkchk', 'tBTNSearchDO')?> </button>
@@ -246,7 +246,17 @@
 										</div>
 									</div>
 								</div>
+							</div>
 
+							<div id="odvPASMutiSelectReport5">
+								<div class="row" style="margin-bottom: 10px;margin-top: 10px;">
+									<div class="col-sm-12">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="orbPASReportList" id="orbPASReportList_7" value="Frm_428">
+											<label class="form-check-label" for="orbPASReportList_7">การตรวจนับสินค้ามากกว่า 1 Gondola</label>
+										</div>
+									</div>
+								</div>
 							</div>
 
 						</div>
@@ -353,12 +363,15 @@
 		var tTypePage = String($(this).data('page'));
 		switch(tTypePage){
 			case "1":
-				var aModalText = {
-					tHead	: '<?=language('document/pdtadjstkchk', 'tModalHeadNextStep')?>',
-					tDetail	: '<?=language('document/pdtadjstkchk', 'tModalTextNextStep')?>',
-					nType	: 1
-				};
-				JSxPASNextStep(aModalText);
+				// var aModalText = {
+				// 	tHead	: '<?=language('document/pdtadjstkchk', 'tModalHeadNextStep')?>',
+				// 	tDetail	: '<?=language('document/pdtadjstkchk', 'tModalTextNextStep')?>',
+				// 	nType	: 1
+				// };
+				// JSxPASNextStep(aModalText);
+				var tDocNo = $('#oetPASDocNo').val();
+				$('#oetPASDocNoPrevious').val(tDocNo);
+				JSxPASCallPagePdtReChkDT();
 				break;
 			case "2":
 				$('#oetPASTypePage').val('3');
@@ -370,13 +383,61 @@
 				JSvPASCallDataTable(tPageCurrent,'2'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
 				break;
 			case "3":
-				$('.xWPASBTPrevious').data('page', 2);
-				$('.xWPASBTPrevious').attr('data-page', 2);
+				$('.xWPASBTPrevious').data('page', 3);
+				$('.xWPASBTPrevious').attr('data-page', 3);
 				$('#oetPASTypePage').val('4');
 				JSxPASControlButton(); // เปิด/ปิด ปุ่มต่างๆ
 
 				var tPageCurrent = $('.xWPagePdtAdjStkChk .active').text();
-				JSvPASCallDataTable(tPageCurrent,'2'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
+				JSvPASCallDataTable(tPageCurrent,'3'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
+				break;
+			case "5":
+				var aModalText = {
+					tHead	: '<?=language('document/pdtadjstkchk', 'tModalHeadNextStep')?>',
+					tDetail	: '<?=language('document/pdtadjstkchk', 'tModalTextNextStep')?>',
+					nType	: 1
+				};
+
+				$.ajax({
+					type: "POST",
+					url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSoCPASChkNewQty",
+					data: {
+						ptDocNo: $('#oetPASDocNo').val()
+					},
+					cache: false,
+					timeout: 0,
+					success: function(oResult) {
+						var aReturn = JSON.parse(oResult);
+						if (aReturn['nStaQuery'] == 1) {
+							var aItems 			= aReturn['aItems'];
+							var tTextContents 	= "<div><b>"+aReturn['tStaMessage']+"</b></div>";
+							if( aItems.length > 0 ){
+								$.each( aItems, function( key, value ) {
+									tTextContents += "<div>"+(key+1)+". ("+value['FTIudStkCode']+") "+value['FTPdtName']+"</div>";
+								});
+							}
+
+							var aTextAlert = {
+								tHead	: 'แจ้งเตือน',
+								tDetail	: tTextContents,
+								nType	: 2
+							};
+							JSxPASAlertMessage(aTextAlert);
+
+							// $('.xWPASConfirmAlertMessage').off('click');
+							// $('.xWPASConfirmAlertMessage').on('click', function() {
+							// 	setTimeout(function() {
+							// 		JSxPASNextStep(aModalText);
+							// 	}, 500);
+							// });
+						}else{
+							JSxPASNextStep(aModalText);
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log('jqXHR: ' + jqXHR + ' textStatus: ' + textStatus + ' errorThrown: ' + errorThrown);
+					}
+				});
 				break;
 		}
 	});
@@ -389,25 +450,29 @@
 				JSvPASCallPageMain($('#oetPASDocNoPrevious').val()); // กลับไปเอกสารล่าสุด
 				$('#oetPASDocNoPrevious').val(''); // ลบเลขที่เอกสารก่อนหน้า
 				break;
-			case "3":
-				$('.xWPASBTNext').data('page', 2);
-				$('.xWPASBTNext').attr('data-page', 2);
-				$('#oetPASTypePage').val('2');
-				JSxPASControlButton(); // เปิด/ปิด ปุ่มต่างๆ
-				$('.xWPASBTPrevious').attr('disabled',true); // ปิดปุ่มย้อนกลับ
+			// case "3":
+			// 	$('.xWPASBTNext').data('page', 2);
+			// 	$('.xWPASBTNext').attr('data-page', 2);
+			// 	$('#oetPASTypePage').val('2');
+			// 	JSxPASControlButton(); // เปิด/ปิด ปุ่มต่างๆ
+			// 	$('.xWPASBTPrevious').attr('disabled',true); // ปิดปุ่มย้อนกลับ
 
-				var tPageCurrent = $('.xWPagePdtAdjStkChk .active').text();
-				JSvPASCallDataTable(tPageCurrent,'2'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
-				break;
+			// 	var tPageCurrent = $('.xWPagePdtAdjStkChk .active').text();
+			// 	JSvPASCallDataTable(tPageCurrent,'2'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
+			// 	break;
 			case "4":
-				$('.xWPASBTNext').data('page', 2);
-				$('.xWPASBTNext').attr('data-page', 2);
-				$('#oetPASTypePage').val('2');
+				$('.xWPASBTNext').data('page', 3);
+				$('.xWPASBTNext').attr('data-page', 3);
+				$('#oetPASTypePage').val('3');
 				JSxPASControlButton(); // เปิด/ปิด ปุ่มต่างๆ
 				$('.xWPASBTPrevious').attr('disabled',true); // ปิดปุ่มย้อนกลับ
 
 				var tPageCurrent = $('.xWPagePdtAdjStkChk .active').text();
-				JSvPASCallDataTable(tPageCurrent,'2'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
+				JSvPASCallDataTable(tPageCurrent,'3'); // เรียกตาราง เพื่อให้มันดึงข้อมูล เคลื่อนไหวหลังตรวจนับ StkCard ใหม่ล่าสุดเสมอ
+				break;
+			case "5":
+				JSvPASCallPageMain($('#oetPASDocNoPrevious').val()); // กลับไปเอกสารล่าสุด
+				$('#oetPASDocNoPrevious').val(''); // ลบเลขที่เอกสารก่อนหน้า
 				break;
 		}
 	});
@@ -456,13 +521,23 @@
 	$('.xWPASBTReport').off('click');
 	$('.xWPASBTReport').on('click',function(){
 		var tStaDocTyp  = String($('#oetPASIuhDocType').val());     //ประเภทเอกสาร 1=ใบย่อย , 2=ใบรวม
+		var tPageType   = String($('#oetPASTypePage').val());
 		if(tStaDocTyp == '1'){
-			$('#odvPASMutiSelectReport1').show();
-			$('#odvPASMutiSelectReport2').hide();
-			$('#orbPASReportList_3').attr('checked',true);
+			if( tPageType == '5' ){
+				$('#odvPASMutiSelectReport1').hide();
+				$('#odvPASMutiSelectReport2').hide();
+				$('#odvPASMutiSelectReport5').show();
+				$('#orbPASReportList_7').attr('checked',true);
+			}else{
+				$('#odvPASMutiSelectReport1').show();
+				$('#odvPASMutiSelectReport2').hide();
+				$('#odvPASMutiSelectReport5').hide();
+				$('#orbPASReportList_3').attr('checked',true);
+			}
 		}else{
 			$('#odvPASMutiSelectReport1').hide();
 			$('#odvPASMutiSelectReport2').show();
+			$('#odvPASMutiSelectReport5').hide();
 			$('#orbPASReportList_5').attr('checked',true);
 		}
 		$('#ohdRptDocNo').val($('#oetPASDocNo').val());
@@ -490,6 +565,7 @@
 		var tReportName = $("input[name='orbPASReportList']:checked").val();
 		var tCallType 	= $('#odvCNTCallType').val();
 		var tParameter 	= $('#odvCNTParameter').val();
+
 		if(tReportName == 'Frm_424'){
 			$('#ofmPASB4View').attr('action','<?=$tBase_url?>?route=rptAllPdtChkStk&calltype='+tCallType+'&Param='+tParameter);
 			$('#ofmPASB4View').submit();
@@ -500,6 +576,10 @@
 			$('#ofmPASB4View').attr('action','javascript:void(0)');
 		}else if(tReportName == 'Frm_427'){
 			$('#ofmPASB4View').attr('action','<?=$tBase_url?>?route=rptAllPdtChkStkDif&calltype='+tCallType+'&Param='+tParameter);
+			$('#ofmPASB4View').submit();
+			$('#ofmPASB4View').attr('action','javascript:void(0)');
+		}else if(tReportName == 'Frm_428'){
+			$('#ofmPASB4View').attr('action','<?=$tBase_url?>?route=rptPdtReChkDT&calltype='+tCallType+'&Param='+tParameter);
 			$('#ofmPASB4View').submit();
 			$('#ofmPASB4View').attr('action','javascript:void(0)');
 		}else if(tReportName == 'Frm_433'){

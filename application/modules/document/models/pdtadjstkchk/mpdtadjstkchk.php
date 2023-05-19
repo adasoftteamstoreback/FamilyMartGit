@@ -3100,7 +3100,7 @@ class mpdtadjstkchk extends Database {
                 }
             }else{
                 $aDataResult = array(
-                    'tSQL'          => $tSQL,
+                    'tSQL'          => $tSQLUpdDef,
                     'nStaQuery'     => 99,
                     'tStaMessage'   => $tReturnUpd[0]['message'],
                 );
@@ -3374,6 +3374,100 @@ class mpdtadjstkchk extends Database {
                         FTWhoUpd    = '$paData[FTWhoUpd]' 
                     WHERE FTIuhDocNo = '$paData[FTIuhDocNo]' AND FTBchCode = '$paData[FTBchCode]' ";
         $this->DB_EXECUTE($tSQL2);
+    }
+
+    // Function : เช็คว่าเอกสารนี้มี Gondola มากกว่า 1 location ไหม ?
+    // Create By: Napat(Jame) 29/03/2023
+    public function FSaMPASGetPdtReChkDT($paData){
+
+        $tSQL  = " EXECUTE STP_PRCx_ReCHKSTK @ptFTIuhDocNo = '".$paData['FTIuhDocNo']."' ,@ptUserName = '".$paData['FTWhoUpd']."', @pnResult=0, @ptResultLog='' ";
+        $tSQL .= " SELECT ROW_NUMBER() OVER(ORDER BY FNIudSeqNo) AS FNNewSeq,* FROM TCNTPdtReChkDT WHERE FTIuhDocNo = '".$paData['FTIuhDocNo']."' ";
+        $aDataList = $this->DB_SELECT($tSQL);
+        if( count($aDataList) > 0 ){
+            $aDataResult = array(
+                // 'tSQL'              => $tSQL,
+                'aItems'            => $aDataList,
+                'nStaQuery'         => 1,
+                'tStaMessage'       => '[FSaMPASGetPdtReChkDT] พบสินค้ามีมากกว่า 1 Gondola จำนวน '.count($aDataList).' รายการ',
+            );
+        }else{
+            $aDataResult = array(
+                // 'tSQL'              => $tSQL,
+                'nStaQuery'         => 99,
+                'tStaMessage'       => '[FSaMPASGetPdtReChkDT] ไม่พบสินค้าที่มี Gondola มากกว่า 1',
+            );
+        }
+        $this->FSxMPASWriteLog($aDataResult['tStaMessage']);
+        // $this->FSxMPASWriteLog($tSQL);
+        return $aDataResult;
+    }
+
+    // Function : แก้ไขจำนวนนับใหม่
+    // Create By: Napat(Jame) 29/03/2023
+    public function FSaMPASPdtReChkDTEditInLine($paData){
+        $tSQL = "   UPDATE TCNTPdtReChkDT WITH(ROWLOCK) 
+                    SET FCIudNewQty = $paData[FCIudNewQty]
+                    WHERE FTIuhDocNo = '".$paData['FTIuhDocNo']."'
+                      AND FNIudSeqNo = ".$paData['FNIudSeqNo'];
+       
+        $tResult = $this->DB_EXECUTE($tSQL);
+        if($tResult == 'success'){
+            $aDataResult = array(
+                // 'tSQL'          => $tSQL,
+                'nStaQuery'     => 1,
+                'tStaMessage'   => 'PdtReChkDTEditInLine Success',
+            );
+        }else{
+            $aDataResult = array(
+                // 'tSQL'          => $tSQL,
+                'nStaQuery'     => 900,
+                'tStaMessage'   => 'PdtReChkDTEditInLine Fail',
+            );
+        }
+        return $aDataResult;
+    }
+
+    // Function : อัพเดท Gondola จำนวนตรวจนับใหม่
+    // Create By: Napat(Jame) 02/04/2023
+    public function FSaMPASUpdGondolaToDT($paData,$tDocNoForReChkDT){
+        $tSQL = "   UPDATE DT WITH(ROWLOCK)
+                    SET DT.FCIudUnitC1      = ISNULL(RECHK.FCIudNewQty,0),
+                        DT.FCIudQtyC1       = ISNULL(RECHK.FCIudNewQty,0) * ISNULL(DT.FCIudStkFac,0),
+                        DT.FCIudUnitC2      = 0,
+                        DT.FCIudQtyBal      = ISNULL(RECHK.FCIudNewQty,0) * ISNULL(DT.FCIudStkFac,0),
+                        DT.FCIudQtyDiff     = ISNULL(RECHK.FCIudNewQty,0) * ISNULL(DT.FCIudStkFac,0) - DT.FCIudWahQty,
+                        DT.FCIudDisAvg      = ISNULL(RECHK.FCIudNewQty,0) * ISNULL(DT.FCIudStkFac,0),
+                        DT.FDIudChkDate     = CONVERT(DATE,GETDATE()),
+                        DT.FTIudChkTime     = CONVERT(VARCHAR, GETDATE(), 108)
+                    FROM TCNTPdtChkDT DT 
+                    INNER JOIN TCNTPdtReChkDT RECHK ON DT.FTIudStkCode = RECHK.FTIudStkCode
+                    WHERE DT.FTIuhDocNo    = '".$paData['FTIuhDocNo']."'
+                      AND RECHK.FTIuhDocNo = '".$tDocNoForReChkDT."' ";
+        $this->DB_EXECUTE($tSQL);
+    }
+
+    // Create By: Napat(Jame) 05/04/2023
+    public function FSaMPASChkNewQty($paData){
+        $tSQL = "   SELECT FTIudStkCode,FTPdtName FROM TCNTPdtReChkDT WITH(NOLOCK) 
+                    WHERE FTIuhDocNo = '".$paData['FTIuhDocNo']."' 
+                      AND FCIudNewQty IS NULL ";
+        $aDataList = $this->DB_SELECT($tSQL);
+        if( count($aDataList) > 0 ){
+            $aDataResult = array(
+                'aItems'            => $aDataList,
+                // 'tSQL'              => $tSQL,
+                'nStaQuery'         => 1,
+                'tStaMessage'       => 'มีสินค้าที่ยังไม่ได้ระบุจำนวนนับ กรุณาระบุจำนวนนับให้ครบทุกรายการ',
+            );
+        }else{
+            $aDataResult = array(
+                'aItems'            => array(),
+                // 'tSQL'              => $tSQL,
+                'nStaQuery'         => 99,
+                'tStaMessage'       => '[FSaMPASChkNewQty] สินค้า Gondola กำหนดจำนวนนับใหม่ทุกรายการแล้ว',
+            );
+        }
+        return $aDataResult;
     }
 
 }

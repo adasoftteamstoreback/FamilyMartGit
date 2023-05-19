@@ -277,6 +277,7 @@ class comnPdtAdjStkChkNew extends Controller {
 
     //บันทึกเอกสาร HD
     public function FSxCPASAddEditHD(){
+
         $tDocNoChk   = $this->input->post('oetPASDocNo');
         $tTypePage   = $this->input->post('ptTypePage');
 
@@ -373,6 +374,8 @@ class comnPdtAdjStkChkNew extends Controller {
         }*/
 
         if($tTypePage == '3'){
+            $tDocNoForReChkDT = $this->input->post('oetPASDocNoForReChkDT');
+            $this->mpdtadjstkchk->FSaMPASUpdGondolaToDT($aDataQuery,$tDocNoForReChkDT); // อัพเดท Gondola จำนวนตรวจนับใหม่
             $this->mpdtadjstkchk->FSaMPASUpdDocRefOfSubDoc($aDataQuery); // อัพเดท DocRef เอกสารย่อย
             $this->mpdtadjstkchk->FSxMPASDocStkNotExist($aDataQuery); // Update ลงข้อมูล TCNTPdtStkNotExist 
         }
@@ -820,6 +823,51 @@ class comnPdtAdjStkChkNew extends Controller {
         }catch(Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    // Function : แสดงหน้า Gondola
+    // Create By: Napat(Jame) 29/03/2023
+    public function FSoCPASPagePdtReChkDT(){
+        // $aChkGondola = $this->mpdtadjstkchk->FSaMPASChkGondola();
+
+        $aConditionData = array(
+            'FTIuhDocNo'    => $this->input->post('ptDocNo'),
+            'FTWhoUpd'      => $_SESSION["SesUsername"],
+        );
+        $aGetPdtReChkDT = $this->mpdtadjstkchk->FSaMPASGetPdtReChkDT($aConditionData);
+        if( $aGetPdtReChkDT['nStaQuery'] == 1 ){
+            $aDataReturn = array(
+                'nStatus'       => 1,
+                'tStaMessage'   => 'Call Stored Success.',
+                'tHTML'         => $this->RequestView('document','pdtadjstkchk/wpdtadjstkchkPdtReChkDT',$aGetPdtReChkDT)
+            );
+        }else{
+            $aDataReturn = array(
+                'nStatus'       => 800,
+                'tStaMessage'   => 'not found pdt re chk dt',
+            );
+        }
+        echo json_encode($aDataReturn);
+    }
+
+    // Function : แก้ไขจำนวนนับใหม่
+    // Create By: Napat(Jame) 29/03/2023
+    public function FSxCPASPdtReChkDTEditInLine(){
+        $aDataQuery = array(
+            'FTIuhDocNo'    => $this->input->post('ptDocNo'),
+            'FNIudSeqNo'    => $this->input->post('ptSeq'),
+            'FCIudNewQty'   => $this->input->post('pnVal'),
+        );
+        $aEditInLine = $this->mpdtadjstkchk->FSaMPASPdtReChkDTEditInLine($aDataQuery);
+        echo json_encode($aEditInLine);
+    }
+
+    public function FSoCPASChkNewQty(){
+        $aDataQuery = array(
+            'FTIuhDocNo'    => $this->input->post('ptDocNo')
+        );
+        $aChkNewQty = $this->mpdtadjstkchk->FSaMPASChkNewQty($aDataQuery);
+        echo json_encode($aChkNewQty);
     }
 
 }

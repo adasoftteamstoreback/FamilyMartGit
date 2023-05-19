@@ -34,7 +34,7 @@ $lang['tRptDocDate']                                = "วันที่เอ�
 $lang['tRptStoreBranch']                            = "Store";
 $lang['tRptStore']                                  = "คลัง";
 
-// DataTable Lang Standard
+// Data Lang Standard
 $lang['tRptPdtBarCode']                             = "รหัสบาร์โค้ด";
 $lang['tRptPdtCode']                                = "รหัสสินค้า";
 $lang['tRptPdtName']                                = "ชื่อสินค้า";
@@ -55,6 +55,7 @@ $lang['tRptTitleAllPdtStkChecking']                 = "รายงานกา�
 $lang['tRptTitleAllPdtChkStkDif']                   = "รายการผลการตรวจนับสต็อกสินค้า";
 $lang['tRptTitleAllPdtStkCheckBylocation']          = "รายงานการตรวจนับสินค้า - แจกแจงตามสถานที่ตรวจนับ";
 $lang['tRptTitleAllPdtNotExist']                    = "รายงานสินค้าที่ไม่แสดงในเอกสารตรวจนับ";
+$lang['tRptTitlePdtReChkDT']                        = "รายงานการตรวจนับสินค้ามากกว่า 1 Gondola";
 
 $lang['tRptQty']                                    = "จำนวน";
 $lang['tRptSaleValue']                              = "มูลค่าขาย";
@@ -77,6 +78,18 @@ $lang['tRptCountNumber']                            = "จำนวนตรว�
 $lang['tRptSumSaleValue']                           = "มูลค่าขายร่วม";
 $lang['tRptCountingLocation']                       = "สถานที่ตรวจนับ";
 
+// Create By: Napat(Jame) 31/03/2023
+$lang['tRptColumnNo']                   = "ลำ<br>ดับ";
+$lang['tRptColumnPdtStkCode']           = "รหัส<br>สต๊อก<br>สินค้า";
+$lang['tRptColumnPdtName']              = "ชื่อสินค้า";
+$lang['tRptColumnGonQty']               = "จำนวน<br>(ชิ้น)";
+$lang['tRptColumnGon1']                 = "จุดที่ 1";
+$lang['tRptColumnGon2']                 = "จุดที่ 2";
+$lang['tRptColumnGon3']                 = "จุดที่ 3";
+$lang['tRptColumnGon4']                 = "จุดที่ 4";
+$lang['tRptColumnGon5']                 = "จุดที่ 5";
+$lang['tRptColumnTotalQty']             = "ผลรวม<br>จำนวนทุกจุด";
+$lang['tRptColumnNewQty']               = "จำนวนนับ<br>ใหม่";
 
 
 
