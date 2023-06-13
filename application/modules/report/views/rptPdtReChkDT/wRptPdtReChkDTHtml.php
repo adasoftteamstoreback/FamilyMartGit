@@ -5,6 +5,19 @@
             size: A4 landscape;
         }
     }
+    
+    .xCNRptTitle {
+        font-size: 1.8rem !important;
+    }
+    .xCNRptCompany {
+        font-size: 1.4rem !important;
+    }
+    .xCNContentReport , .xCNRptTable {
+        font-size: 1.4rem !important;
+    }
+    .xCNRptAddress , .xCNRptHeaderInfo {
+        font-size: 1.4rem !important;
+    }
 </style>
 
 <input type="hidden" id="ohdReportTitle" value="<?php echo $aDataTextRef['tTitleReport']; ?>">
@@ -39,21 +52,20 @@
             <table class="table table xCNRptTable">
                 <thead>
                     <tr>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnNo']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnPdtStkCode']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnPdtName']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGon1']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptPdtBarCode']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnPdtName']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnGon1']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGonQty']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGon2']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnGon2']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGonQty']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGon3']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnGon3']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGonQty']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGon4']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnGon4']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGonQty']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGon5']?></th>
+                        <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnGon5']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGonQty']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnTotalQty']?></th>
-                        <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnNewQty']?></th>
+                        <th class="xCNRptColumnHeader text-center" width="85"><?=$aDataTextRef['tRptColumnNewQty']?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,8 +74,7 @@
                     foreach($aDataReport['aItems'] as $nKey => $aValue){
             ?>
                     <tr>
-                        <td class="xCNRptDetail text-center"><?=$aValue['FNIudSeqNo']?></td>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTIudStkCode']?></td>
+                        <td class="xCNRptDetail text-left"><?=$aValue['FTIudBarCode']?></td>
                         <td class="xCNRptDetail text-left"><?=$aValue['FTPdtName']?></td>
                         <td class="xCNRptDetail text-left"><?=$aValue['FTGon1']?></td>
                         <td class="xCNRptDetail text-right"><?=$aValue['FCGon1Qty']?></td>

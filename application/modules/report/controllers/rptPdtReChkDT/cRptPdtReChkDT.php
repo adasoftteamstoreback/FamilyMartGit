@@ -63,6 +63,7 @@ class cRptPdtReChkDT extends Controller {
 
             // Table Report
             'tRptColumnNo'              => language('report/report', 'tRptColumnNo'),
+            'tRptPdtBarCode'            => language('report/report', 'tRptPdtBarCode'),
             'tRptColumnPdtStkCode'      => language('report/report', 'tRptColumnPdtStkCode'),
             'tRptColumnPdtName'         => language('report/report', 'tRptColumnPdtName'),
             'tRptColumnGonQty'          => language('report/report', 'tRptColumnGonQty'),

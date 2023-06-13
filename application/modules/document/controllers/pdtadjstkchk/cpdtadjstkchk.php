@@ -692,17 +692,23 @@ class comnPdtAdjStkChkNew extends Controller {
     public function FSxCPASSearchProduct(){
         try{
             $tTabActive = $this->input->post('ptTabActive');
+            $tPageType  = $this->input->post('ptPageType');
             $aDataSearch = array(
                 'FTBchCode'         => $this->tBchCode,
                 'FTIuhDocNo'        => $this->input->post('FTIuhDocNo'),
                 'ptTextSearch'      => $this->input->post('FTIudBarCode'),
-                'nPageType'         => $this->input->post('ptPageType'),
+                'nPageType'         => $tPageType,
                 'ptFilter'          => $this->input->post('ptFilter')
             );
-            if($tTabActive == "PDTCHK"){
-                $aGetData = $this->mpdtadjstkchk->FSaMPASSearchProduct($aDataSearch); // สินค้าตรวจนับ
-            }else{
-                $aGetData = $this->mpdtadjstkchk->FSaMPASSearchPdtWithOutSystem($aDataSearch); // สินค้าไม่มีในระบบ
+            if($tTabActive == "PDTCHK" && $tPageType == "1"){
+                // สินค้าตรวจนับ
+                $aGetData = $this->mpdtadjstkchk->FSaMPASSearchProduct($aDataSearch);
+            }else if($tTabActive == "PDTSYS" && $tPageType == "1"){
+                // สินค้าไม่มีในระบบ
+                $aGetData = $this->mpdtadjstkchk->FSaMPASSearchPdtWithOutSystem($aDataSearch);
+            }else if($tTabActive == "PDTCHK" && $tPageType == "5"){
+                // รายการสินค้าที่มีการตรวจนับสินค้ามากกว่า 1 Gondola และมีการขายเกิดขึ้นระหว่างการนับ
+                $aGetData = $this->mpdtadjstkchk->FSaMPASSearchProductReChkDT($aDataSearch);
             }
             echo json_encode($aGetData);
         }catch(Exception $e) {
@@ -831,18 +837,22 @@ class comnPdtAdjStkChkNew extends Controller {
         // $aChkGondola = $this->mpdtadjstkchk->FSaMPASChkGondola();
 
         $aConditionData = array(
+            'nRow'          => 20,
+            'nPage'         => $this->input->post('nPageCurrent'),
             'FTIuhDocNo'    => $this->input->post('ptDocNo'),
             'FTWhoUpd'      => $_SESSION["SesUsername"],
         );
         $aGetPdtReChkDT = $this->mpdtadjstkchk->FSaMPASGetPdtReChkDT($aConditionData);
         if( $aGetPdtReChkDT['nStaQuery'] == 1 ){
             $aDataReturn = array(
+                'tSQL'          => $aGetPdtReChkDT['tSQL'],
                 'nStatus'       => 1,
                 'tStaMessage'   => 'Call Stored Success.',
                 'tHTML'         => $this->RequestView('document','pdtadjstkchk/wpdtadjstkchkPdtReChkDT',$aGetPdtReChkDT)
             );
         }else{
             $aDataReturn = array(
+                'tSQL'          => $aGetPdtReChkDT['tSQL'],
                 'nStatus'       => 800,
                 'tStaMessage'   => 'not found pdt re chk dt',
             );

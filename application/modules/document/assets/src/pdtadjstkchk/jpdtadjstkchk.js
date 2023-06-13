@@ -309,6 +309,23 @@ function JSxPASClickPage(ptPage, ptPageType) {
         }
         JSvPASCallDataTable(nPageCurrent, nTypePage);
         $('#oetPASCurrentPage').val(nPageCurrent);
+    } else if ( ptPageType == '5' ) {
+        var nPageOld = $('.xWPagePdtReChkDT .active').text();
+        switch (ptPage) {
+            case 'next':
+                $('.xWBtnNext').addClass('disabled');
+                nPageNew = parseInt(nPageOld, 10) + 1;
+                nPageCurrent = nPageNew;
+                break;
+            case 'previous':
+                nPageNew = parseInt(nPageOld, 10) - 1;
+                nPageCurrent = nPageNew;
+                break;
+            default:
+                nPageCurrent = ptPage;
+        }
+        JSxPASCallPagePdtReChkDT(nPageCurrent);
+        $('#oetPASCurrentPage').val(nPageCurrent);
     } else {
         var nPageOld = $('.xWPagePdtWithOutSystem .active').text();
         var nTypePage = $('#oetPASTypePage').val();
@@ -1772,13 +1789,16 @@ function JSxPASSearchClickPage(ptPage, ptType) {
 function JSvPASSearchProduct(paPackData, ptTabActive) {
     var tDocNo = $('#oetPASDocNo').val();
     if (tDocNo == "" || tDocNo === undefined) { tDocNo = ' '; }
+
+    var tPageType = paPackData['ptPageType'];
+
     $.ajax({
         type: "POST",
         url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSxCPASSearchProduct",
         data: {
             FTIuhDocNo: tDocNo,
             FTIudBarCode: paPackData['FTIudBarCode'],
-            ptPageType: paPackData['ptPageType'],
+            ptPageType: tPageType,
             ptFilter: paPackData['ptFilter'],
             ptTabActive: ptTabActive
         },
@@ -1790,10 +1810,12 @@ function JSvPASSearchProduct(paPackData, ptTabActive) {
             if (aReturn['nStaQuery'] == 1) {
                 var nPage = Math.ceil(aReturn['aItems']['RowIDItems'] / 20);
                 $('#oetSearchItems').val(''); //Clear Inputs
-                if (ptTabActive == "PDTCHK") {
-                    JSvPASCallDataTable(nPage, paPackData['ptPageType'], aReturn['aItems']['RowIDItems']);
-                } else {
-                    JSvPASCallDataPdtWithOutSystemTable(nPage, paPackData['ptPageType'], aReturn['aItems']);
+                if (ptTabActive == "PDTCHK" && tPageType == '1') {
+                    JSvPASCallDataTable(nPage, tPageType, aReturn['aItems']['RowIDItems']);
+                } else if (ptTabActive == "PDTSYS" && tPageType == '1') {
+                    JSvPASCallDataPdtWithOutSystemTable(nPage, tPageType, aReturn['aItems']);
+                } else if (ptTabActive == "PDTCHK" && tPageType == '5') {
+                    JSxPASCallPagePdtReChkDT(nPage, aReturn['aItems']['RowIDItems']);
                 }
             } else {
                 JSxPASAlertMessage(aModalText = {
@@ -1997,14 +2019,17 @@ function JSxPASSearchDocRefClickPage(ptPage, ptType) {
 
 // Function : เรียกข้อมูล TCNTPdtReChkDT
 // Create By : Napat(Jame) 29/03/2023
-function JSxPASCallPagePdtReChkDT(){
+function JSxPASCallPagePdtReChkDT(nPage, pnSeq){
+
+    if (nPage == "" || nPage === undefined) { nPage = 1; }
+
     JSxContentLoader('show');
     $.ajax({
         type: "POST",
         url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSoCPASPagePdtReChkDT",
         data: {
             ptDocNo         : $('#oetPASDocNo').val(),
-            nPageCurrent    : 1
+            nPageCurrent    : nPage,
         },
         cache: false,
         timeout: 0,
@@ -2019,12 +2044,14 @@ function JSxPASCallPagePdtReChkDT(){
                 $('.xWPASTabMenuProduct, #odvPASPanel1, #odvPASPanel2').hide();
                 JSxPASControlButton();
                 $('#odvPASContentTables').html(aResult['tHTML']);
+
+                //ถ้าส่ง Seq มาด้วยให้ Focus
+                if (pnSeq != "" || pnSeq !== undefined) {
+                    $('.xWPASProductSeq' + pnSeq).addClass('xCNTableTrActive');
+                    $('#oetPASIudNewQty' + pnSeq).focus();
+                }
+
             }else{
-                // JSxPASAlertMessage(aModalText = {
-                //     tHead: 'Error',
-                //     tDetail: aResult['tStaMessage'],
-                //     nType: 2
-                // });
                 var aModalText = {
 					tHead	: 'Next',
 					tDetail	: 'ในการรวมเอกสารตรวจนับ เอกสารย่อยจะถูกอนุมัติและไม่สามารถแก้ไขได้<br>คุณต้องการทำต่อไปหรือไม่ ?',

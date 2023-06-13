@@ -3380,19 +3380,37 @@ class mpdtadjstkchk extends Database {
     // Create By: Napat(Jame) 29/03/2023
     public function FSaMPASGetPdtReChkDT($paData){
 
-        $tSQL  = " EXECUTE STP_PRCx_ReCHKSTK @ptFTIuhDocNo = '".$paData['FTIuhDocNo']."' ,@ptUserName = '".$paData['FTWhoUpd']."', @pnResult=0, @ptResultLog='' ";
-        $tSQL .= " SELECT ROW_NUMBER() OVER(ORDER BY FNIudSeqNo) AS FNNewSeq,* FROM TCNTPdtReChkDT WHERE FTIuhDocNo = '".$paData['FTIuhDocNo']."' ";
-        $aDataList = $this->DB_SELECT($tSQL);
+        $aRowLen    = FCNaHCallLenData($paData['nRow'],$paData['nPage']);
+
+        $tSQL  = "  EXECUTE STP_PRCx_ReCHKSTK @ptFTIuhDocNo = '".$paData['FTIuhDocNo']."' ,@ptUserName = '".$paData['FTWhoUpd']."', @pnResult=0, @ptResultLog='' ";
+        $this->DB_SELECT($tSQL);
+
+        $tSQL1 = "  SELECT L.* FROM ( ";
+        $tSQL2 = "      SELECT 
+                            ROW_NUMBER() OVER(ORDER BY DT.FNIudSeqNo ASC) AS RowID,
+                            DT.* 
+                        FROM TCNTPdtReChkDT DT WITH(NOLOCK) 
+                        WHERE DT.FTIuhDocNo = '".$paData['FTIuhDocNo']."' ";
+        $tSQL3 = "   ) AS L WHERE L.RowID > ".$aRowLen[0]." AND L.RowID <= ".$aRowLen[1];
+        $aDataList = $this->DB_SELECT($tSQL1.$tSQL2.$tSQL3);
+
         if( count($aDataList) > 0 ){
+            $aCount     = $this->DB_SELECT($tSQL2);
+            $nFoundRow  = count($aCount);
+            $nPageAll   = ceil($nFoundRow/$paData['nRow']);
             $aDataResult = array(
-                // 'tSQL'              => $tSQL,
+                'tSQL'              => $tSQL1.$tSQL2.$tSQL3,
+                'nPage'             => $paData['nPage'],
                 'aItems'            => $aDataList,
+                'nAllRow'           => $nFoundRow,
+                'nAllPage'          => $nPageAll,
+                'nCurrentPage'      => $paData['nPage'],
                 'nStaQuery'         => 1,
                 'tStaMessage'       => '[FSaMPASGetPdtReChkDT] พบสินค้ามีมากกว่า 1 Gondola จำนวน '.count($aDataList).' รายการ',
             );
         }else{
             $aDataResult = array(
-                // 'tSQL'              => $tSQL,
+                'tSQL'              => $tSQL1.$tSQL2.$tSQL3,
                 'nStaQuery'         => 99,
                 'tStaMessage'       => '[FSaMPASGetPdtReChkDT] ไม่พบสินค้าที่มี Gondola มากกว่า 1',
             );
@@ -3465,6 +3483,52 @@ class mpdtadjstkchk extends Database {
                 // 'tSQL'              => $tSQL,
                 'nStaQuery'         => 99,
                 'tStaMessage'       => '[FSaMPASChkNewQty] สินค้า Gondola กำหนดจำนวนนับใหม่ทุกรายการแล้ว',
+            );
+        }
+        return $aDataResult;
+    }
+
+    //ค้นหาสินค้าตรวจนับ
+    function FSaMPASSearchProductReChkDT($paData){
+        $tWhereDoc      = "";
+        $tWhereFilter   = "";
+
+        if(isset($paData['FTIuhDocNo']) && !empty($paData['FTIuhDocNo'])){
+            $tWhereDoc  .= " AND A.FTIuhDocNo = '$paData[FTIuhDocNo]' ";
+        }else{
+            $tWhereDoc  .= " AND A.FTIuhDocNo = '' ";
+        }
+
+        if(isset($paData['ptTextSearch']) && !empty($paData['ptTextSearch'])){ //ตรวจสอบว่ากรอกคำค้นหามาด้วยไหม
+            if(isset($paData['ptFilter']) && !empty($paData['ptFilter'])){  //ตรวจสอบฟิวเตอร์ที่เลือก
+                $tWhereFilter .= " AND L.".$paData['ptFilter']." LIKE '%".$paData['ptTextSearch']."%' ";
+            }
+        }
+
+        $tSQL = "   SELECT L.RowIDItems FROM (
+                        SELECT
+                            ROW_NUMBER() OVER(ORDER BY A.FNIudSeqNo ASC) AS RowIDItems,
+                            A.*
+                        FROM TCNTPdtReChkDT A WITH (NOLOCK)
+                        WHERE 1=1 $tWhereDoc  
+                    ) AS L
+                    WHERE 1=1 $tWhereFilter
+                ";
+
+        $aDataList = $this->DB_SELECT($tSQL);
+        if(count($aDataList) > 0){
+            $aDataResult = array(
+                'tSQL'              => $tSQL,
+                'aItems'            => $aDataList[0],
+                'nStaQuery'         => 1,
+                'tStaMessage'       => 'Select Data from TCNTPdtReChkDT Success',
+            );
+        }else{
+            $aDataResult = array(
+                'tSQL'              => $tSQL,
+                'aItems'            => array(),
+                'nStaQuery'         => 99,
+                'tStaMessage'       => 'error Can not select data from TCNTPdtReChkDT',
             );
         }
         return $aDataResult;
