@@ -1,6 +1,10 @@
-﻿Version 4.3.04
+﻿Version 4.3.05
 
 
+
+4.3.05 Napat(Jame)
+- [2023/06/19] 
+    Comsheet-2023-039 แก้ไขกรณี key จำนวนนับใหม่แล้วมี msg error
 
 4.3.04 Napat(Jame)
 - [2023/06/13] 

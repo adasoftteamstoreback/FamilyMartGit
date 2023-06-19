@@ -2036,15 +2036,19 @@ function JSxPASCallPagePdtReChkDT(nPage, pnSeq){
         success: function(oResult) {
             var aResult = JSON.parse(oResult);
             if( aResult['nStatus'] == 1 ){
-                $('.xWPASBTNext').data('page', 5);
-                $('.xWPASBTNext').attr('data-page', 5);
-                $('.xWPASBTPrevious').data('page', 5);
-                $('.xWPASBTPrevious').attr('data-page', 5);
-                $('#oetPASTypePage').val(5);
-                $('.xWPASTabMenuProduct, #odvPASPanel1, #odvPASPanel2').hide();
-                JSxPASControlButton();
-                $('#odvPASContentTables').html(aResult['tHTML']);
 
+                if( pnSeq === undefined ){
+                    $('.xWPASBTNext').data('page', 5);
+                    $('.xWPASBTNext').attr('data-page', 5);
+                    $('.xWPASBTPrevious').data('page', 5);
+                    $('.xWPASBTPrevious').attr('data-page', 5);
+                    $('#oetPASTypePage').val(5);
+                    $('.xWPASTabMenuProduct, #odvPASPanel1, #odvPASPanel2').hide();
+                    JSxPASControlButton();
+                }
+                
+                $('#odvPASContentTables').html(aResult['tHTML']);
+            
                 //ถ้าส่ง Seq มาด้วยให้ Focus
                 if (pnSeq != "" || pnSeq !== undefined) {
                     $('.xWPASProductSeq' + pnSeq).addClass('xCNTableTrActive');
@@ -2075,6 +2079,7 @@ function JSxPASPdtReChkDTEditInLine(poElm, pnType) {
         sessionStorage.setItem("EditInLine", "2");
         var tDocNo = $('#oetPASDocNo').val();
         var tSeq = poElm.parent().parent().parent().data('seq');
+        var tRealSeqNo = poElm.parent().parent().parent().data('realseqno');
 
         // Check Values if null or ""
         if ($('#oetPASIudNewQty' + tSeq).val() == "") { $('#oetPASIudNewQty' + tSeq).val(0); }
@@ -2089,7 +2094,7 @@ function JSxPASPdtReChkDTEditInLine(poElm, pnType) {
             url: "Content.php?route=omnPdtAdjStkChkNew&func_method=FSxCPASPdtReChkDTEditInLine",
             data: {
                 ptDocNo: tDocNo,
-                ptSeq: tSeq,
+                ptSeq: tRealSeqNo,
                 pnVal: nVal
             },
             cache: false,

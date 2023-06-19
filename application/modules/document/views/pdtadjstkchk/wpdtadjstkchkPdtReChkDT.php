@@ -23,7 +23,7 @@
             if( isset($nStaQuery) == 1 ){
                 foreach($aItems AS $tKey => $tValue){
         ?>
-                    <tr class="xWPASProductSeq<?=$tValue['RowID']?> xWPASDataPdtList xCNTableTrClickActive" data-seq="<?=$tValue['RowID']?>" data-stkcode="<?=$tValue['FTIudStkCode']?>" data-pdtname="<?=$tValue['FTPdtName']?>">
+                    <tr class="xWPASProductSeq<?=$tValue['RowID']?> xWPASDataPdtList xCNTableTrClickActive" data-seq="<?=$tValue['RowID']?>" data-realseqno="<?=$tValue['FNIudSeqNo']?>" data-stkcode="<?=$tValue['FTIudStkCode']?>" data-pdtname="<?=$tValue['FTPdtName']?>">
                         <td nowrap><?=$tValue['FTIudBarCode']?></td>
                         <td nowrap><?=$tValue['FTPdtName']?></td>
 
@@ -134,9 +134,6 @@
             $('#oetSearchItemsFilter').val($(this).data('column'));
     
             switch($(this).data('column')){
-                case "RowID":
-                    tTextFilter = '<?=language('document/pdtadjstkchk', 'tPASTBNo'); ?>';
-                break;
                 case "FTIudBarCode":
                     tTextFilter = '<?=language('document/pdtadjstkchk', 'tPASTBBarCode'); ?>';
                 break;
