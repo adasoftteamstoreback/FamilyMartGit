@@ -324,7 +324,7 @@ function JSxPASClickPage(ptPage, ptPageType) {
             default:
                 nPageCurrent = ptPage;
         }
-        JSxPASCallPagePdtReChkDT(nPageCurrent);
+        JSxPASCallPagePdtReChkDT(nPageCurrent, undefined, 'NO_EXECUTE');
         $('#oetPASCurrentPage').val(nPageCurrent);
     } else {
         var nPageOld = $('.xWPagePdtWithOutSystem .active').text();
@@ -1815,7 +1815,7 @@ function JSvPASSearchProduct(paPackData, ptTabActive) {
                 } else if (ptTabActive == "PDTSYS" && tPageType == '1') {
                     JSvPASCallDataPdtWithOutSystemTable(nPage, tPageType, aReturn['aItems']);
                 } else if (ptTabActive == "PDTCHK" && tPageType == '5') {
-                    JSxPASCallPagePdtReChkDT(nPage, aReturn['aItems']['RowIDItems']);
+                    JSxPASCallPagePdtReChkDT(nPage, aReturn['aItems']['RowIDItems'], 'NO_EXECUTE');
                 }
             } else {
                 JSxPASAlertMessage(aModalText = {
@@ -2019,9 +2019,10 @@ function JSxPASSearchDocRefClickPage(ptPage, ptType) {
 
 // Function : เรียกข้อมูล TCNTPdtReChkDT
 // Create By : Napat(Jame) 29/03/2023
-function JSxPASCallPagePdtReChkDT(nPage, pnSeq){
+function JSxPASCallPagePdtReChkDT(nPage, pnSeq, ptType){
 
     if (nPage == "" || nPage === undefined) { nPage = 1; }
+    if (ptType == "" || ptType === undefined) { ptType = "EXECUTE"; }
 
     JSxContentLoader('show');
     $.ajax({
@@ -2030,14 +2031,16 @@ function JSxPASCallPagePdtReChkDT(nPage, pnSeq){
         data: {
             ptDocNo         : $('#oetPASDocNo').val(),
             nPageCurrent    : nPage,
+            ptType          : ptType,
         },
         cache: false,
         timeout: 0,
         success: function(oResult) {
             var aResult = JSON.parse(oResult);
             if( aResult['nStatus'] == 1 ){
-
-                if( pnSeq === undefined ){
+                console.log(pnSeq);
+                if( (pnSeq == '' || pnSeq === undefined) && ptType == 'EXECUTE' ){
+                    console.log('if');
                     $('.xWPASBTNext').data('page', 5);
                     $('.xWPASBTNext').attr('data-page', 5);
                     $('.xWPASBTPrevious').data('page', 5);

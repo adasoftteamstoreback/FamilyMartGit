@@ -18,6 +18,9 @@
     .xCNRptAddress , .xCNRptHeaderInfo {
         font-size: 1.4rem !important;
     }
+    .xCNRptGodola {
+        font-size: 1rem !important;
+    }
 </style>
 
 <input type="hidden" id="ohdReportTitle" value="<?php echo $aDataTextRef['tTitleReport']; ?>">
@@ -65,7 +68,7 @@
                         <th class="xCNRptColumnHeader text-left"><?=$aDataTextRef['tRptColumnGon5']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnGonQty']?></th>
                         <th class="xCNRptColumnHeader text-center"><?=$aDataTextRef['tRptColumnTotalQty']?></th>
-                        <th class="xCNRptColumnHeader text-center" width="85"><?=$aDataTextRef['tRptColumnNewQty']?></th>
+                        <th class="xCNRptColumnHeader text-center" width="70"><?=$aDataTextRef['tRptColumnNewQty']?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,20 +77,20 @@
                     foreach($aDataReport['aItems'] as $nKey => $aValue){
             ?>
                     <tr>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTIudBarCode']?></td>
+                        <td nowrap class="xCNRptDetail text-left"><?=$aValue['FTIudBarCode']?></td>
                         <td class="xCNRptDetail text-left"><?=$aValue['FTPdtName']?></td>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTGon1']?></td>
-                        <td class="xCNRptDetail text-right"><?=$aValue['FCGon1Qty']?></td>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTGon2']?></td>
-                        <td class="xCNRptDetail text-right"><?=$aValue['FCGon2Qty']?></td>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTGon3']?></td>
-                        <td class="xCNRptDetail text-right"><?=$aValue['FCGon3Qty']?></td>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTGon4']?></td>
-                        <td class="xCNRptDetail text-right"><?=$aValue['FCGon4Qty']?></td>
-                        <td class="xCNRptDetail text-left"><?=$aValue['FTGon5']?></td>
-                        <td class="xCNRptDetail text-right"><?=$aValue['FCGon5Qty']?></td>
-                        <td class="xCNRptDetail text-right"><?=$aValue['FCIudTotalQty']?></td>
-                        <td class="xCNRptDetail text-right" style="border-bottom: 1px dashed #666 !important;"><?=$aValue['FCIudNewQty']?></td>
+                        <td nowrap class="xCNRptDetail text-left"><?=$aValue['FTGon1']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><?=$aValue['FCGon1Qty']?></td>
+                        <td nowrap class="xCNRptDetail text-left"><?=$aValue['FTGon2']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><?=$aValue['FCGon2Qty']?></td>
+                        <td nowrap class="xCNRptDetail text-left"><?=$aValue['FTGon3']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><?=$aValue['FCGon3Qty']?></td>
+                        <td nowrap class="xCNRptDetail text-left"><?=$aValue['FTGon4']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><?=$aValue['FCGon4Qty']?></td>
+                        <td nowrap class="xCNRptDetail text-left"><?=$aValue['FTGon5']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><?=$aValue['FCGon5Qty']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><?=$aValue['FCIudTotalQty']?></td>
+                        <td nowrap class="xCNRptDetail text-right"><div style="border-bottom: 1px dashed #666 !important;height: 2.2rem;"><?=$aValue['FCIudNewQty']?></div></td>
                     </tr>
             <?php
                     }

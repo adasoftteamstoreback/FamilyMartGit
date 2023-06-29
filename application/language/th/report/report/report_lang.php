@@ -88,8 +88,8 @@ $lang['tRptColumnGon2']                 = "จุดที่ 2";
 $lang['tRptColumnGon3']                 = "จุดที่ 3";
 $lang['tRptColumnGon4']                 = "จุดที่ 4";
 $lang['tRptColumnGon5']                 = "จุดที่ 5";
-$lang['tRptColumnTotalQty']             = "ผลรวม<br>จำนวนทุกจุด";
-$lang['tRptColumnNewQty']               = "จำนวนนับ<br>ใหม่";
+$lang['tRptColumnTotalQty']             = "ผลรวม<br>จำนวน<br>ทุกจุด";
+$lang['tRptColumnNewQty']               = "จำนวน<br>นับใหม่";
 
 
 

@@ -841,6 +841,7 @@ class comnPdtAdjStkChkNew extends Controller {
             'nPage'         => $this->input->post('nPageCurrent'),
             'FTIuhDocNo'    => $this->input->post('ptDocNo'),
             'FTWhoUpd'      => $_SESSION["SesUsername"],
+            'tType'         => $this->input->post('ptType'),
         );
         $aGetPdtReChkDT = $this->mpdtadjstkchk->FSaMPASGetPdtReChkDT($aConditionData);
         if( $aGetPdtReChkDT['nStaQuery'] == 1 ){

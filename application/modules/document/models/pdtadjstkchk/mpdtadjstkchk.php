@@ -3381,9 +3381,10 @@ class mpdtadjstkchk extends Database {
     public function FSaMPASGetPdtReChkDT($paData){
 
         $aRowLen    = FCNaHCallLenData($paData['nRow'],$paData['nPage']);
-
-        $tSQL  = "  EXECUTE STP_PRCx_ReCHKSTK @ptFTIuhDocNo = '".$paData['FTIuhDocNo']."' ,@ptUserName = '".$paData['FTWhoUpd']."', @pnResult=0, @ptResultLog='' ";
-        $this->DB_SELECT($tSQL);
+        if( $paData['tType'] == "EXECUTE" ){
+            $tSQL  = "  EXECUTE STP_PRCx_ReCHKSTK @ptFTIuhDocNo = '".$paData['FTIuhDocNo']."' ,@ptUserName = '".$paData['FTWhoUpd']."', @pnResult=0, @ptResultLog='' ";
+            $this->DB_SELECT($tSQL);
+        }
 
         $tSQL1 = "  SELECT L.* FROM ( ";
         $tSQL2 = "      SELECT 
