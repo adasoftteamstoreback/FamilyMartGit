@@ -253,7 +253,7 @@
 									<div class="col-sm-12">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="orbPASReportList" id="orbPASReportList_7" value="Frm_428">
-											<label class="form-check-label" for="orbPASReportList_7">การตรวจนับสินค้ามากกว่า 1 Gondola</label>
+											<label class="form-check-label" for="orbPASReportList_7">รายงานการตรวจนับสินค้ามากกว่า 1 จุด</label>
 										</div>
 									</div>
 								</div>

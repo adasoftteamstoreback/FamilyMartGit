@@ -24,7 +24,7 @@ class mRptPdtReChkDT extends Database {
         }
 
         $tSQL .= "  SELECT DISTINCT
-                        ROW_NUMBER() OVER(ORDER BY FTIudStkCode ASC) AS RowID,
+                        ROW_NUMBER() OVER(ORDER BY FTPgpChain ASC) AS RowID,
                         *
                     FROM TCNTPdtReChkDT WITH(NOLOCK)
                     WHERE FTIuhDocNo = '".$paPackData['tDocNo']."'
